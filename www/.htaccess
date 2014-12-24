@@ -1,0 +1,16 @@
+AddDefaultCharset utf8
+Options -Indexes
+DirectoryIndex index.php index.html
+
+RewriteEngine on
+RewriteBase /
+RewriteCond %{HTTP_HOST} ^www\.(.*) [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+
+
+RewriteCond $1 !^(index.php|css|js|robots.txt|assets|upload|tool|img|test|sitemap.xml|favicon.ico)
+RewriteRule ^(.*)$ /index.php?r=/$1 [L]
+
+
+
