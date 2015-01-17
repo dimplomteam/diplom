@@ -36,9 +36,9 @@ class currentUser extends User {
     }
 
     private function _tryAuthPost(){
-        $email=addslashes($_POST["email"]);
+        $login=addslashes($_POST["login"]);
         $pass=addslashes($_POST["pass"]);
-        if(!$this->loadByFields(array("email" => $email, "pass" => $pass))){
+        if(!$this->loadByFields(array("login" => $login, "pass" => $pass))){
             return false;
         }
 
