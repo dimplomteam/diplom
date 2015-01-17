@@ -11,6 +11,13 @@ class currentUser extends User {
     private $_isLogined=false;
 
     public function __construct(){
+        session_start();
+        if($this->_tryAuthSession()){
+            return true;
+        }
+        if($this->_tryAuthPost()){
+            return true;
+        }
 
     }
 
@@ -20,16 +27,33 @@ class currentUser extends User {
 
 
     private function _tryAuthSession(){
-
+        if(!isset($_SESSION["currentUser"])){
+            return false;
+        }
+        $this->load($_SESSION["currentUser"]);
+        $this->_isLogined=true;
+        return true;
     }
 
     private function _tryAuthPost(){
+        $email=addslashes($_POST["email"]);
+        $pass=addslashes($_POST["pass"]);
+        if(!$this->loadByFields(array("email" => $email, "pass" => $pass))){
+            return false;
+        }
 
+        $_SESSION["currentUser"]=$this->get();
+        $this->_isLogined=true;
+        return true;
     }
 
 
-    private function _tryAuth(){
 
+
+    public function logout(){
+        $this->unload();
+        $this->_isLogined=false;
+        unset($_SESSION["currentUser"]);
     }
 
 }

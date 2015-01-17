@@ -17,6 +17,7 @@ class App {
 
     private static $_db;
     private static $_user;
+    private static $_defaultController="postController";
 
     public static function run(){
         self::_db_connect();
@@ -33,8 +34,8 @@ class App {
         return self::$_user;
     }
 
-    protected static function _user(){
-        self::$_user = new User();
+    private static function _user(){
+        self::$_user = new currentUser();
     }
 
     private static function _db_connect(){

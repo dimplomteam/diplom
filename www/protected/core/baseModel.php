@@ -86,8 +86,7 @@ class baseModel {
         $res=App::db()->query($sql);
         if(!$res->num_rows) return false;
         $this->_fields=$res->fetch_assoc();
-        $this->_isLoaded=true;
-        return $this;
+        return $this->_isLoaded=true;
     }
 
     public function loadByFields($arr,$is_multi=false){
@@ -104,8 +103,7 @@ class baseModel {
         if(!$res->num_rows) return false;
         if(!$is_multi) {
             $this->_fields = $res->fetch_assoc();
-            $this->_isLoaded = true;
-            return $this;
+            return $this->_isLoaded = true;
         }
         $items=array();
         while($item = $res->fetch_assoc()){
@@ -119,8 +117,7 @@ class baseModel {
     public function load($arr){
         if(!count($arr)) return false;
         $this->_fields=$arr;
-        $this->_isLoaded=true;
-        return $this;
+        return $this->_isLoaded=true;
     }
 
     public function get(){
@@ -129,6 +126,12 @@ class baseModel {
 
     public function getTable(){
         return $this->_tableName;
+    }
+
+    public function unload(){
+        $this->_fields=array();
+        $this->_isLoaded=false;
+        return true;
     }
 
 }
