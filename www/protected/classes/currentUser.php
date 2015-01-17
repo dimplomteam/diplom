@@ -27,9 +27,6 @@ class currentUser extends User {
 
     }
 
-    private function _tryAuthCookies(){
-
-    }
 
     private function _tryAuth(){
 

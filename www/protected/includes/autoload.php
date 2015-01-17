@@ -7,5 +7,14 @@
  */
 
 function __autoload($class_name) {
-    require_once (PATH."protected/core/".$class_name.".php");
+    $map=array(
+        "currentUser" => "classes/currentUser",
+        "App" => "core/App",
+        "baseModel" => "core/baseModel",
+        "Comment" => "models/Comment",
+        "Post" => "models/Post",
+        "User" => "models/User",
+    );
+
+    require_once (PATH."protected/".$map[$class_name].".php");
 }
