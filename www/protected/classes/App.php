@@ -19,7 +19,6 @@ class App {
     private static $_user;
 
     public static function run(){
-
         self::_db_connect();
         self::_user();
 

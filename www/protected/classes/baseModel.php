@@ -14,6 +14,7 @@ class baseModel {
     private $_linkableFields=array();
 
     public $_tableName;
+    public $_foreignFields=[];
 //    public $_offset="0";
 //    public $_limit="20";
 
@@ -59,6 +60,10 @@ class baseModel {
 
     public function get(){
         return $this->_fields;
+    }
+
+    public function getTable(){
+        return $this->_tableName;
     }
 
 }
