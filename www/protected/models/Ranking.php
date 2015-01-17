@@ -7,5 +7,6 @@
  */
 
 class Ranking extends baseModel{
+    public $_tableName="ranking";
 
 }

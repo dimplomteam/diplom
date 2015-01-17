@@ -17,12 +17,13 @@ class App {
 
     private static $_db;
     private static $_user;
-    private static $_defaultController="postController";
+    private static $_controller;
+    private static $_defaultController="post";
 
     public static function run(){
         self::_db_connect();
         self::_user();
-
+        self::_controller();
 
     }
 
@@ -36,6 +37,14 @@ class App {
 
     private static function _user(){
         self::$_user = new currentUser();
+    }
+
+    private static function _controller(){
+        $request=explode("/",$_GET["r"]);
+        $controller=array_shift($request);
+        $controller = ($controller) ? $controller : self::$_defaultController;
+        $controller.="Controller";
+        self::$_controller = new $controller($request);
     }
 
     private static function _db_connect(){

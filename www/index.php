@@ -1,27 +1,12 @@
 <?php
-//var_dump($_GET);
-header('Content-Type: text/html; charset=utf-8');
-include("connect.php");
-include("functions.php");
+/**
+ * Created by PhpStorm.
+ * User: Яна
+ * Date: 25.12.2014
+ * Time: 1:17
+ */
 
-$anchor=trim($_GET["r"],"/");
-if(!$anchor){
-$anchor="index";}
+define ('PATH', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
+require_once(PATH."protected/includes/autoload.php");
 
-$sql="select * from page where anchor='".$anchor."'";
-$res=mysql_query($sql);
-$page=mysql_fetch_assoc($res);
-
-if(!$page){
-$sql="select * from page where anchor='index'";
-$res=mysql_query($sql);
-$page=mysql_fetch_assoc($res);}
-
-$temp=file_get_contents("temp/template.html");
-
-
-
-
-echo strtr($temp,add_brackets($page));
-
-
+App::run();
