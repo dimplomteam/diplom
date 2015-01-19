@@ -6,8 +6,10 @@
  * Time: 22:48
  */
 
-class baseController {
+class baseController extends baseObject{
     private $_defaultAction="index";
+    private $_defaultLayout="main";
+    public $_layout="";
 
     public function __construct($request){
         $action=array_shift($request);
@@ -16,8 +18,13 @@ class baseController {
         $this->$action($request);
     }
 
-    public function indexAction($request){
-
+    public function render($tempName,$params=array()){
+        $layout = ($this->_layout) ? $this->_layout : $this->_defaultLayout;
+        $view = new baseView($layout,$tempName,$params);
     }
+
+//    public function indexAction($request=array()){
+//
+//    }
 
 }

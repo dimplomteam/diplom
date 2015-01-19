@@ -11,23 +11,37 @@ class baseModel {
     private $_primaryKey="id";
     private $_isLoaded=false;
     private $_defaultValues=array();
-    private $_linkableFields=array();
+//    private $_linkableFields=array();
     private $_foreignLoadedModels=array();
+    private $_multiLimits="0,20";
 
     public $_tableName;
     public $_foreignFields=array();
 //    public $_offset="0";
 //    public $_limit="20";
 
+    public function setLimits($offset,$limit){
+        $this->_multiLimits=intval($offset).",".intval($limit);
+    }
+
     public function __get($key){
         if(array_key_exists($key,$this->_foreignFields)){
             return $this->getForeignLoadedModel($key);
         }
-
         if(!$this->isLoaded()) return false;
-        return (isset($this->_fields[$key]))
-                ? $this->_fields[$key]
-                : ( (isset($this->_defaultValues[$key])) ? $this->_defaultValues[$key] : null );
+
+        if(isset($this->_fields[$key])){
+            if($key=="created_time"){
+                return date("d.m.Y H:i:s",strtotime($this->_fields[$key]));
+            }
+            return $this->_fields[$key];
+        }
+        if(isset($this->_defaultValues[$key])){
+            return $this->_defaultValues[$key];
+        }
+        return null;
+
+
     }
 
     public function __set($key,$val){
@@ -66,9 +80,9 @@ class baseModel {
         }
         $this->_foreignLoadedModels[$key] = new $key;
 
-        $from=$this->_linkableFields[$key]["from"];
-        if($this->_linkableFields[$key]["multi"]){
-            $this->_foreignLoadedModels[$key]->loadByFields(array($this->_linkableFields[$key]["field"] => $this->$from));
+        $from=$this->_foreignFields[$key]["from"];
+        if($this->_foreignFields[$key]["multi"]){
+            $this->_foreignLoadedModels[$key]->loadByFields(array($this->_foreignFields[$key]["field"] => $this->$from));
         }else{
             $this->_foreignLoadedModels[$key]->loadById($this->$from);
         }
@@ -90,14 +104,19 @@ class baseModel {
     }
 
     public function loadByFields($arr,$is_multi=false){
-        if(!count($arr)) return false;
+//        if(!count($arr)) return false;
         $where_arr=array();
         foreach($arr as $key => $val) {
-            $where_arr[] = addslashes($key) . " = " . addslashes($val);
+            $where_arr[] = "`".addslashes($key)."`" . " = " . "\"".addslashes($val)."\"";
         }
-        $sql="select * from ".$this->_tableName." where ".implode(" and ".$where_arr);
+        $sql="select * from ".$this->_tableName;
+        if(count($where_arr)) {
+            $sql .=" where " . implode(" and " , $where_arr);
+            }
         if(!$is_multi){
             $sql.=" limit 0,1";
+        }else{
+            $sql.= " limit ".$this->_multiLimits;
         }
         $res=App::db()->query($sql);
         if(!$res->num_rows) return false;
@@ -107,7 +126,8 @@ class baseModel {
         }
         $items=array();
         while($item = $res->fetch_assoc()){
-            $item_obj= new get_class($this);
+            $item_obj_name=get_class($this);
+            $item_obj= new $item_obj_name;
             $item_obj->load($item);
             $items[]=$item_obj;
         }

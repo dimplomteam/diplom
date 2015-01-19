@@ -12,6 +12,10 @@ class Post extends baseModel{
         "comments" => array("from" => "id",
             "model" => "Comment",
             "field" => "post_id",
-            "multi" => true)
+            "multi" => true),
+        "user" => array("from" => "user_id",
+            "model" => "User",
+            "field" => "id",
+            "multi" => false),
     );
 }

@@ -15,10 +15,6 @@ class currentUser extends User {
         if($this->_tryAuthSession()){
             return true;
         }
-        if($this->_tryAuthPost()){
-            return true;
-        }
-
     }
 
     public function isLogined(){
@@ -35,7 +31,10 @@ class currentUser extends User {
         return true;
     }
 
-    private function _tryAuthPost(){
+    public function tryAuthPost(){
+        if(!isset($_POST["login"])){
+            return false;
+        }
         $login=addslashes($_POST["login"]);
         $pass=addslashes($_POST["pass"]);
         if(!$this->loadByFields(array("login" => $login, "pass" => $pass))){

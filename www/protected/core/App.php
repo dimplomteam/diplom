@@ -6,7 +6,7 @@
  * Time: 1:22
  */
 
-class App {
+class App extends baseObject{
     private static $_db_settings=array(
         'DB_USER' => 'root',
         'DB_PASS' => '',
@@ -22,6 +22,7 @@ class App {
 
     public static function run(){
         self::_db_connect();
+        self::_parse_uri();
         self::_user();
         self::_controller();
 
@@ -35,12 +36,18 @@ class App {
         return self::$_user;
     }
 
+    public static function redirect($address=""){
+        $address= ($address) ? $address : "/";
+        header("Location: ",$address);
+        exit;
+    }
+
     private static function _user(){
         self::$_user = new currentUser();
     }
 
     private static function _controller(){
-        $request=explode("/",$_GET["r"]);
+        $request=explode("/",trim($_GET["r"],"/"));
         $controller=array_shift($request);
         $controller = ($controller) ? $controller : self::$_defaultController;
         $controller.="Controller";
@@ -48,10 +55,20 @@ class App {
     }
 
     private static function _db_connect(){
-        self::$_db = new mysqli(self::$_db_settings['DB_HOST,'],
+        self::$_db = new mysqli(self::$_db_settings['DB_HOST'],
             self::$_db_settings['DB_USER'],
             self::$_db_settings['DB_PASS'],
             self::$_db_settings['DB_NAME']);
     }
 
+    private static function _parse_uri(){
+        if(strpos($_SERVER["REQUEST_URI"],"?")!==false){
+            $page_request=substr($_SERVER["REQUEST_URI"],strpos($_SERVER["REQUEST_URI"],"?")+1);
+            if($page_request){
+                $page_request=explode("&",$page_request);
+                for($i=0;$i<count($page_request);$i++){
+                    $item=explode("=",$page_request[$i]);
+                    $_GET[$item[0]]=$item[1];
+                }}}
+    }
 }

@@ -7,12 +7,15 @@
  */
 
 function __autoload($class_name) {
+//    var_dump($class_name);
     $map=array(
         "currentUser" => "classes/currentUser",
 
         "App" => "core/App",
         "baseModel" => "core/baseModel",
         "baseController" => "core/baseController",
+        "baseView" => "core/baseView",
+        "baseObject" => "core/baseObject",
 
         "Comment" => "models/Comment",
         "Post" => "models/Post",
@@ -21,6 +24,7 @@ function __autoload($class_name) {
         "Image" => "models/Image",
 
         "postController" => "controllers/postController",
+        "profileController" => "controllers/profileController",
     );
 
     require_once (PATH."protected/".$map[$class_name].".php");

@@ -1,3 +1,4 @@
 *.xml
 .idea/diplom.iml
 .idea/.name
+www/tool/*
