@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title><?=$this->title?>Волгоград</title>
+<title><?=$this->title?>Волгоград volgoplace.ru</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link href="/assets/css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="/assets/js/jquery-1.3.2.min.js"></script>
@@ -15,7 +15,7 @@
   <div class="main_resize">
     <div class="header">
       <div class="logo">
-        <h1><a href="#"><span>Волго</span>Град<small></small></a></h1>
+        <h1><a href="#"><span>Волго</span>Place.ru<small></small></a></h1>
       </div>
     </div>
     <div class="content">
@@ -34,7 +34,7 @@
 
           <?=$this->view();?>
 
-          <div class="pagenavi"><span class="pages">Page 1 of 2</span><span class="current">1</span><a href="#">2</a><a href="#" >&raquo;</a></div>
+          <!--<div class="pagenavi"><span class="pages">Page 1 of 2</span><span class="current">1</span><a href="#">2</a><a href="#" >&raquo;</a></div>-->
         </div>
         <div class="sidebar">
           <div class="gadget">
