@@ -9,8 +9,8 @@
 class postController extends baseController{
 
     public function __call($action,$request=array()){
-        $offset=intval($_GET["offset"]);
-        $limit=intval($_GET["limit"]);
+        $offset=(isset($_GET["offset"])) ? intval($_GET["offset"]) : 0;
+        $limit=(isset($_GET["limit"])) ? intval($_GET["limit"]) : 0;
         $category= ($action=="indexAction") ? array() : array("category" => $action);
 
         $this->getPostsLine($category,$offset,$limit);

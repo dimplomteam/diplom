@@ -13,7 +13,7 @@ class baseModel {
     private $_defaultValues=array();
 //    private $_linkableFields=array();
     private $_foreignLoadedModels=array();
-    private $_multiLimits="0,20";
+    private $_multiLimits="0,10";
     private $_fullCount="0";
 
     public $_tableName;
@@ -22,6 +22,7 @@ class baseModel {
 //    public $_limit="20";
 
     public function setLimits($offset,$limit){
+        $limit= intval($limit) ? intval($limit) : 0;
         $this->_multiLimits=intval($offset).",".intval($limit);
     }
 
