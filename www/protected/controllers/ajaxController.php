@@ -14,8 +14,8 @@ class ajaxController extends baseController{
     }
 
     public function loginAction(){
-        if(App::user()->tryLoginPost()){
-            App::redirect($_SERVER["HTTP_REFERER"]);
+        if(App::user()->tryAuthPost()){
+            App::redirect("/profile");
         }else{
             App::redirect("/login/fail");
         }

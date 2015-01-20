@@ -27,6 +27,10 @@ class profileController extends baseController{
     }
 
     public function editAction($request=array()){
+        if(!App::user()->isLogined()){
+            App::redirect("/login");
+        }
+        $this->render("profile_edit",array("user" => App::user()));
 
     }
 
