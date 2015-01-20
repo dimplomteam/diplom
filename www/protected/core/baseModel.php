@@ -126,7 +126,7 @@ class baseModel {
             $sql.= " limit ".$this->_multiLimits;
         }
         $res=App::db()->query($sql);
-        if(!$res->num_rows) return false;
+        if((!$res->num_rows) && !$is_multi) return false;
         if(!$is_multi) {
             $this->_fields = $res->fetch_assoc();
             return $this->_isLoaded = true;
