@@ -7,7 +7,7 @@
  */
 
 class profileController extends baseController{
-    private $_defaultAction="view";
+    public $_defaultAction="view";
 
     public function viewAction($request=array()){
         $called_username=(isset($request[0])) ? $request[0] : App::user()->login;

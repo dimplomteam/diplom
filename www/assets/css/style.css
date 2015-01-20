@@ -86,6 +86,7 @@ a.rm, a.com {
 	padding:4px;
 	border:1px solid #c6c6c6;
 	background:#FFF;
+	position: relative;
 }
 .menu_nav ul {
 	list-style:none;
@@ -114,6 +115,21 @@ a.rm, a.com {
 	text-decoration:none;
 	background:#78bbe6;
 }
+.menu_nav ul>a{
+	position: absolute;
+	top:0;
+	bottom:0;
+	right:0;
+	display: block;
+	margin: 0;
+	padding: 11px 25px;
+	color: #878989;
+	text-decoration: none;
+	font-size: 13px;
+	line-height: 23px;
+	background: url(/assets/img/menu_line.gif) no-repeat left;
+}
+
 .content {
 	padding:9px;
 	background:url(/assets/img/content_border_bg.png);

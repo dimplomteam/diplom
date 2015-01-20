@@ -27,6 +27,8 @@ function __autoload($class_name) {
 
         "postController" => "controllers/postController",
         "profileController" => "controllers/profileController",
+        "loginController" => "controllers/loginController",
+        "ajaxController" => "controllers/ajaxController",
     );
 
     require_once (PATH."protected/".$map[$class_name].".php");

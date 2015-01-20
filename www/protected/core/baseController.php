@@ -7,7 +7,7 @@
  */
 
 class baseController extends baseObject{
-    private $_defaultAction="index";
+    public $_defaultAction="index";
     private $_defaultLayout="main";
     public $_layout="";
 

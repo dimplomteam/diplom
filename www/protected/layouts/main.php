@@ -4,6 +4,7 @@
 <title><?=$this->title?>Волгоград volgoplace.ru</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link href="/assets/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/assets/css/yana.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="/assets/js/jquery-1.3.2.min.js"></script>
 <script type="text/javascript" src="/assets/js/script.js"></script>
 <script type="text/javascript" src="/assets/js/cufon-yui.js"></script>
@@ -27,6 +28,11 @@
             <li><a href="about.html">About Us</a></li>
             <li><a href="blog.html">Blog</a></li>
             <li><a href="contact.html">Contact Us</a></li>
+            <?php if(!App::user()->isLogined()) {?>
+            <a href="/login">Войти</a>
+            <?php }else{?>
+              <a href="/profile"><?=App::user()->login?></a>
+            <?php } ?>
           </ul>
         </div>
         <div class="hbg"><img src="/assets/img/header_images.jpg" width="915" height="286" alt="" /></div>
@@ -37,6 +43,7 @@
           <!--<div class="pagenavi"><span class="pages">Page 1 of 2</span><span class="current">1</span><a href="#">2</a><a href="#" >&raquo;</a></div>-->
         </div>
         <div class="sidebar">
+          <!--
           <div class="gadget">
             <div class="search">
               <form method="get" id="search" action="#">
@@ -48,6 +55,7 @@
               <div class="clr"></div>
             </div>
           </div>
+          -->
           <div class="gadget">
             <h2 class="star"><span>Sidebar</span> Menu</h2>
             <div class="clr"></div>
@@ -60,7 +68,7 @@
               <li><a href="#">Web Templates</a></li>
             </ul>
           </div>
-          <div class="gadget">
+         <!--<div class="gadget">
             <h2 class="star"><span>Sponsors</span></h2>
             <div class="clr"></div>
             <ul class="ex_menu">
@@ -71,7 +79,7 @@
               <li><a href="#">Fringilla velit magna</a> Cras id urna orbi tincidunt orci ac</li>
               <li><a href="#">Suspendisse bibendum</a> purus nec placerat bibendum</li>
             </ul>
-          </div>
+          </div>-->
         </div>
         <div class="clr"></div>
       </div>

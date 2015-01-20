@@ -37,8 +37,8 @@ class App extends baseObject{
     }
 
     public static function redirect($address=""){
-        $address= ($address) ? $address : "/";
-        header("Location: ",$address);
+        $address= ($address) ? $address : "/";//var_dump($address);
+        header("Location: ".$address);
         exit;
     }
 

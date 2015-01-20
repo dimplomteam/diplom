@@ -10,6 +10,7 @@ class ajaxController extends baseController{
 
     public function logoutAction(){
         App::user()->logout();
+        $_SERVER["HTTP_REFERER"] = isset($_SERVER["HTTP_REFERER"]) ? $_SERVER["HTTP_REFERER"] : "/";
         App::redirect($_SERVER["HTTP_REFERER"]);
     }
 

@@ -6,17 +6,17 @@
  * Time: 12:03
  */
 
-class loginController {
+class loginController extends baseController {
 
     public function indexAction($request=array()){
         if(App::user()->isLogined()){
             App::redirect("/profile");
         }
-        $this->render("login_index",array());
+        $this->render("login_index",array("login_error" => ""));
     }
 
     public function failAction($request=array()){
-        $this->render("login_fail",array());
+        $this->render("login_index",array("login_error" => "try something else"));
     }
 
     public function forgotAction($request=array()){
