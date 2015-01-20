@@ -7,7 +7,7 @@
  */
 
 class paginationWidget extends baseObject{
-    public $result_html;
+    public $result_html="";
 
     public function __coustruct($offset,$limit,$count,$base_uri="/"){
         $per_page=$limit-$offset;
