@@ -11,6 +11,8 @@ function __autoload($class_name) {
     $map=array(
         "currentUser" => "classes/currentUser",
 
+        "paginationWidget" => "widgets/paginationWidget",
+
         "App" => "core/App",
         "baseModel" => "core/baseModel",
         "baseController" => "core/baseController",

@@ -13,7 +13,8 @@ class postController extends baseController{
         $posts->setLimits(0,10);
         $posts_arr = $posts->loadByFields(array(),true);
         $posts_count = $posts->getFullCount();
-        $this->render("post_line",array("title" =>"main page", "posts" => $posts_arr));
+        $pagination = new paginationWidget("0","10",$posts_count,"/");
+        $this->render("post_line",array("title" =>"main page", "posts" => $posts_arr, "pagination" => $pagination));
     }
 
 }

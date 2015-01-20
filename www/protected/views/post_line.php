@@ -20,3 +20,4 @@
 </div>
 
 <? } ?>
+<?=$this->pagination?>
