@@ -83,11 +83,12 @@ class baseModel {
         if(array_key_exists($key,$this->_foreignLoadedModels)){
             return $this->_foreignLoadedModels[$key];
         }
-        $this->_foreignLoadedModels[$key] = new $key;
+        $model=$this->_foreignFields[$key]["model"];
+        $this->_foreignLoadedModels[$key] = new $model;
 
         $from=$this->_foreignFields[$key]["from"];
         if($this->_foreignFields[$key]["multi"]){
-            $this->_foreignLoadedModels[$key]->loadByFields(array($this->_foreignFields[$key]["field"] => $this->$from));
+            $this->_foreignLoadedModels[$key]=$this->_foreignLoadedModels[$key]->loadByFields(array($this->_foreignFields[$key]["field"] => $this->$from),true);
         }else{
             $this->_foreignLoadedModels[$key]->loadById($this->$from);
         }

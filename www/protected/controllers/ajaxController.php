@@ -33,4 +33,16 @@ class ajaxController extends baseController{
         App::redirect("/post/view/".$id);
     }
 
+    public function comment_addAction($request=array()){
+        $post_id= (isset($request[0])) ? intval($request[0]) : 0;
+        if((!App::user()->isLogined()) || (!$post_id)){
+            App::redirect("/login");
+        }
+        $comment = new Comment;
+        $comment->load(array("post_id" => $post_id, "content" => $_POST["content"]));
+        $id=$comment->save();
+        //var_dump($post);
+        App::redirect("/post/view/".$post_id);
+    }
+
 }

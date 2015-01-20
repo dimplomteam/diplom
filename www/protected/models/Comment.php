@@ -15,4 +15,9 @@ class Comment extends baseModel{
                         "multi" => false)
     );
 
+    public function save(){
+        $this->user_id=App::user()->id;
+        return parent::save();
+    }
+
 }

@@ -5,16 +5,6 @@
  * Date: 20.01.2015
  * Time: 20:13
  */
-
-/*
-             <div class="comment"> <a href="#"><img src="images/userpic.gif" width="40" height="40" alt="" class="userpic" /></a>
-              <p><a href="#">admin</a> Says:<br />
-                April 20th, 2009 at 2:17 pm</p>
-              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse bibendum.</p>
-            </div>
-
- */
-
 ?>
 
 
@@ -33,6 +23,33 @@
     <div class="clr"></div>
 </div>
 
+<?php foreach($this->post->comments as $comment) { ?>
+
+<div class="comment"> <a href="#"><img src="images/userpic.gif" width="40" height="40" alt="" class="userpic" /></a>
+    <p><a href="#"><?=$comment->user->login?></a> Says:<br />
+        <?=$comment->created_time?></p>
+    <p><?=$comment->content?></p>
+</div>
+
+<?php } ?>
+
+
+<div class="article">
+    <h2>Прокомментируйте</h2>
+    <div class="clr"></div>
+    <form action="/ajax/comment_add/<?=$this->post->id?>" method="post" id="leavereply">
+        <ol>
+            <li>
+                <label for="content">Your Message</label>
+                <textarea id="content" name="content" rows="8" cols="50"></textarea>
+            </li>
+            <li>
+                <input type="submit" class="send">
+                <div class="clr"></div>
+            </li>
+        </ol>
+    </form>
+</div>
 
 
 
