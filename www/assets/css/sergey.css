@@ -43,6 +43,6 @@
     opacity: 0.5;
 }
 
-.rating>.up:hover, .rating>.down:hover{
+.rating>.up:hover, .rating>.down:hover, .rating.up>.up, .rating.down>.down{
     opacity: 1;
 }

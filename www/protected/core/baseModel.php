@@ -59,10 +59,11 @@ class baseModel {
 
             $pairs=array();
             foreach($this->_fields as $key => $val){
-                $pairs[]=addslashes($key)."=".addslashes($val);
+                $pairs[]=addslashes($key)."='".addslashes($val)."'";
             }
 
             $sql="update ".$this->_tableName." set ".implode(", ",$pairs)." where ".$this->_primaryKey."=".$id;
+            App::db()->query($sql);
         }else{
             $keys=array();
             $values=array();
@@ -71,9 +72,11 @@ class baseModel {
                 $keys[]=addslashes($key);
                 $values[]=addslashes($val);
             }
-            $sql="insert into ".$this->_tableName."(".implode(", ",$keys).") values (".implode(", ",$values).")  ";
+            $sql="insert into ".$this->_tableName." (".implode(", ",$keys).") values ('".implode("', '",$values)."')  ";
+            App::db()->query($sql);
+            $this->_fields[$this->_primaryKey]=App::db()->insert_id;
         }
-        return App::db()->query($sql);
+        return $this->_fields[$this->_primaryKey];
     }
 
     private function getForeignLoadedModel($key){

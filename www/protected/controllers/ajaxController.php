@@ -22,4 +22,15 @@ class ajaxController extends baseController{
         }
     }
 
+    public function post_createAction(){
+        if(!App::user()->isLogined()){
+            App::redirect("/login");
+        }
+        $post = new Post;
+        $post->load(array("title" => $_POST["title"], "content" => $_POST["content"]));
+        $id=$post->save();
+        //var_dump($post);
+        App::redirect("/post/view/".$id);
+    }
+
 }
