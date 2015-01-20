@@ -7,6 +7,7 @@
  */
 
 class paginationWidget extends baseObject{
+    public $result_html;
 
     public function __coustruct($offset,$limit,$count,$base_uri="/"){
         $per_page=$limit-$offset;
@@ -22,10 +23,12 @@ class paginationWidget extends baseObject{
             $is_current = ($cur_page==$i) ? "current" : "";
             $result_html.='<a class="'.$is_current.'" href="'.$base_uri.'?offset='.(($i-1)*$per_page).'&limit='.($i*$per_page).'" >'.$i.'</a>';
         }
-
-
         $result_html.='</div>';
-        return $result_html;
+        return $this->result_html=$result_html;
+    }
+
+    public function __toString(){
+        return $this->result_html;
     }
 
 }

@@ -22,7 +22,7 @@ class baseModel {
 //    public $_limit="20";
 
     public function setLimits($offset,$limit){
-        $limit= intval($limit) ? intval($limit) : 0;
+        $limit= intval($limit) ? intval($limit) : 10;
         $this->_multiLimits=intval($offset).",".intval($limit);
     }
 
