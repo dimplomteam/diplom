@@ -18,14 +18,14 @@
   <div class="main_resize">
     <div class="header">
       <div class="logo">
-        <h1><a href="#"><span>Волго</span>Place.ru<small></small></a></h1>
+        <h1><a href="/"><span>Волго</span>Place.ru<small></small></a></h1>
       </div>
     </div>
     <div class="content">
       <div class="content_bg">
         <div class="menu_nav">
           <ul>
-            <li class="active"><a href="index.html">Home</a></li>
+            <li class="active"><a href="/">Домой</a></li>
             <li><a href="support.html">Support</a></li>
             <li><a href="about.html">About Us</a></li>
             <li><a href="blog.html">Blog</a></li>

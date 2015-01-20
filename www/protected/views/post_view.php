@@ -19,11 +19,16 @@
 
 
 <div class="article">
+    <div class="rating">
+        <span class="up"></span>
+        <span class="label">1234</span>
+        <span class="down"></span>
+    </div>
     <h2><span><?=$this->post->title?></span></h2>
     <div class="clr"></div>
     <p class="post-data"><span class="date"><?=$this->post->created_time?></span> &nbsp;
-        |&nbsp; Posted by <a href="/profile/view/<?=$this->post->user->login?>"><?=$this->post->user->login?></a>
-        <?=$this->post->content?>
+        |&nbsp; Posted by <a href="/profile/view/<?=$this->post->user->login?>"><?=$this->post->user->login?></a></p>
+        <div class="content"><?=$this->post->content?></div>
 
     <div class="clr"></div>
 </div>
@@ -32,8 +37,7 @@
 
 
 
-<div class="rating">
-    <span class="up"></span>
-    <span class="label">1234</span>
-    <span class="down"></span>
-</div>
+
+
+
+
