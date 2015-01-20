@@ -5,6 +5,7 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link href="/assets/css/style.css" rel="stylesheet" type="text/css" />
 <link href="/assets/css/yana.css" rel="stylesheet" type="text/css" />
+<link href="/assets/css/sergey.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="/assets/js/jquery-1.3.2.min.js"></script>
 <script type="text/javascript" src="/assets/js/script.js"></script>
 <script type="text/javascript" src="/assets/js/cufon-yui.js"></script>
