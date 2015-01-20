@@ -14,6 +14,7 @@ class baseModel {
 //    private $_linkableFields=array();
     private $_foreignLoadedModels=array();
     private $_multiLimits="0,20";
+    private $_fullCount="0";
 
     public $_tableName;
     public $_foreignFields=array();
@@ -113,6 +114,7 @@ class baseModel {
         if(count($where_arr)) {
             $sql .=" where " . implode(" and " , $where_arr);
             }
+        $no_limit_sql=$sql;
         if(!$is_multi){
             $sql.=" limit 0,1";
         }else{
@@ -131,6 +133,9 @@ class baseModel {
             $item_obj->load($item);
             $items[]=$item_obj;
         }
+        $res=App::db()->query("SELECT COUNT(*) FROM ( ".$no_limit_sql." )  AS subquery");
+        $this->_fullCount=$res->fetch_row();
+        $this->_fullCount=$this->_fullCount[0];
         return $items;
     }
 
@@ -152,6 +157,10 @@ class baseModel {
         $this->_fields=array();
         $this->_isLoaded=false;
         return true;
+    }
+
+    public function getFullCount(){
+        return $this->_fullCount;
     }
 
 }

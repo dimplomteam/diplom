@@ -10,8 +10,10 @@ class postController extends baseController{
 
     public function indexAction($request=array()){
         $posts = new Post;
-        $posts = $posts->loadByFields(array(),true);
-        $this->render("post_line",array("title" =>"main page", "posts" => $posts));
+        $posts->setLimits(0,10);
+        $posts_arr = $posts->loadByFields(array(),true);
+        $posts_count = $posts->getFullCount();
+        $this->render("post_line",array("title" =>"main page", "posts" => $posts_arr));
     }
 
 }
