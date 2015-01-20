@@ -31,7 +31,6 @@ class profileController extends baseController{
             App::redirect("/login");
         }
         $this->render("profile_edit",array("user" => App::user()));
-
     }
 
 }
