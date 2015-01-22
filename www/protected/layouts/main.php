@@ -12,6 +12,7 @@
 <script type="text/javascript" src="/assets/js/cufon-yui.js"></script>
 <script type="text/javascript" src="/assets/js/arial.js"></script>
 <script type="text/javascript" src="/assets/js/cuf_run.js"></script>
+<script type="text/javascript" src="/assets/js/main.js"></script>
 </head>
 <body>
 <div class="main">

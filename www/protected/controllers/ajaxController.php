@@ -45,4 +45,32 @@ class ajaxController extends baseController{
         App::redirect("/post/view/".$post_id);
     }
 
+    public function rankingAction(){
+        $post_id=intval($_POST["postid"]);
+        $rank=intval($_POST["rank"]);
+
+        if((!App::user()->isLogined()) || (!$post_id)){
+            return false;
+        }
+
+        $post = new Post();
+        $post->loadById($post_id);
+        if(!$post->isLoaded()){
+            return false;
+        }
+
+        $ranking = new Ranking;
+        $ranking->loadByFields(array("post_id" => $post_id, "user_id" => App::user()->id));
+        $changing=$rank-$ranking->rank;
+        $ranking->rank=$rank;
+        $ranking->save();
+
+        $rank=$post->rank+$changing;
+        $post = new Post();
+        $post->id=$post_id;
+        $post->rank=$rank;
+        $post->save();
+
+    }
+
 }

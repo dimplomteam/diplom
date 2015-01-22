@@ -9,7 +9,7 @@
 class rankingWidget extends baseWidget{
 
     public function __coustruct($post_id,$cur_rank){
-        $allow_vote=(App::user()->isLogined()) ? 1 : 0;
+        $allow_vote=(App::user()->isLogined()) ? "1" : "0";
         $cur_vote=0;
         if($allow_vote) {
             $ranking = new Ranking;

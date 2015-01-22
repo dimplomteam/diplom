@@ -52,13 +52,16 @@ class baseModel {
 
     public function save(){
         $fields=$this->_fields;
+        if(isset($this->_fields["created_time"])){
+            unset($fields["created_time"]);
+        }
 
-        if(isset($this->_fields[$this->_primaryKey]) && $this->_fields[$this->_primaryKey]){
-            $id=$this->_fields[$this->_primaryKey];
+        if(isset($fields[$this->_primaryKey]) && $fields[$this->_primaryKey]){
+            $id=$fields[$this->_primaryKey];
             unset($fields[$this->_primaryKey]);
 
             $pairs=array();
-            foreach($this->_fields as $key => $val){
+            foreach($fields as $key => $val){
                 $pairs[]=addslashes($key)."='".addslashes($val)."'";
             }
 
@@ -68,7 +71,7 @@ class baseModel {
             $keys=array();
             $values=array();
 
-            foreach($this->_fields as $key => $val){
+            foreach($fields as $key => $val){
                 $keys[]=addslashes($key);
                 $values[]=addslashes($val);
             }
