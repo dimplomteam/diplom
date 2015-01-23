@@ -2,6 +2,8 @@ DROP TABLE IF EXISTS page;
 DROP TABLE IF EXISTS `user`;
 DROP TABLE IF EXISTS `post`;
 DROP TABLE IF EXISTS `comment`;
+DROP TABLE IF EXISTS `ranking`;
+DROP TABLE IF EXISTS `image`;
 
 
 CREATE TABLE IF NOT EXISTS `user` (
@@ -39,6 +41,25 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `user_id` int(10) unsigned NOT NULL DEFAULT '0',
   `post_id` int(10) unsigned NOT NULL DEFAULT '0',
   `content` text,
+  `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ranking` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `post_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `rank`  int(3) NOT NULL DEFAULT '0',
+  `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `image` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `post_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `title` text,
+  `url` text,
   `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
