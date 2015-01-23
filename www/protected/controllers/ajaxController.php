@@ -22,6 +22,21 @@ class ajaxController extends baseController{
         }
     }
 
+    public function registrationAction(){
+        if(App::user()->isLogined()){
+            App::redirect("/profile");
+        }
+        $user=new User();
+        $user->login=$_POST["login"];
+        $user->pass=$_POST["pass"];
+        $user->email=$_POST["email"];
+        if($user->save()){
+            App::user()->tryAuthPost();
+            App::redirect("/profile");
+        }
+        App::redirect("/login/registration_fail");
+    }
+
     public function post_createAction(){
         if(!App::user()->isLogined()){
             App::redirect("/login");
