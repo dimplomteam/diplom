@@ -30,10 +30,10 @@ function rankingTriggerUp(el){
 
    // console.log(rankingWidget);
 
-    if(curvalue=="-1"){
-        changing=2;
+    if(curvalue==-1){
+        changing=1; //ras ras !!!111
         rankingWidget.removeClass("dowm");
-    }else if(curvalue=="0"){
+    }else if(curvalue==0){
         changing=1;
         rankingWidget.addClass("up");
         rankingWidget.removeClass("down");
@@ -66,10 +66,10 @@ function rankingTriggerDown(el){
         return false;
     }
 
-    if(curvalue=="1"){
-        changing=-2;
+    if(curvalue==1){
+        changing=-1; //ras ras !!!111
         rankingWidget.removeClass("up");
-    }else if(curvalue=="0"){
+    }else if(curvalue==0){
         changing=-1;
         rankingWidget.addClass("down");
         rankingWidget.removeClass("up");
