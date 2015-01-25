@@ -8,7 +8,7 @@
 
 class rankingWidget extends baseWidget{
 
-    public function __coustruct($post_id,$cur_rank){
+    public function __construct($post_id,$cur_rank){
         $allow_vote=(App::user()->isLogined()) ? "1" : "0";
         $cur_vote=0;
         if($allow_vote) {
@@ -17,7 +17,7 @@ class rankingWidget extends baseWidget{
             $cur_vote=$ranking->rank;
         }
         $this->result_html='
-        <div class="rating" data-allowvote="'.$allow_vote.'" data-curvalue="'.$cur_vote.'" data-postid="'.$post_id.'">
+        <div class="rating" data-allowvote="'.$allow_vote.'" data-curvalue="'.intval($cur_vote).'" data-postid="'.$post_id.'">
         <span class="up"></span>
         <span class="label">'.$cur_rank.'</span>
         <span class="down"></span>

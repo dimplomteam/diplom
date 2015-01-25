@@ -15,14 +15,16 @@ function rankingTriggerUp(el){
         return false;
     }
 
-    var rankingWidget=el.closest(".ranking");
-    var curvalue=rankingWidget.data("curvalue");
+    var rankingWidget=el.closest(".rating");
+    var curvalue=parseInt(rankingWidget.data("curvalue"));
     var postid=rankingWidget.data("postid");
     var trigger_up=rankingWidget.find(".up");
     var trigger_down=rankingWidget.find(".down");
     var count_label=rankingWidget.find(".label");
     var changing=0;
-    var rank=count_label.html();
+    var rank=parseInt(count_label.html());
+
+    console.log(rankingWidget);
 
     if(curvalue=="-1"){
         changing=2;
@@ -36,6 +38,8 @@ function rankingTriggerUp(el){
         trigger_up.addClass("active");
         return false;
     }
+    console.log(changing);
+
 
     rankingWidget.data("curvalue",curvalue+changing);
     rank=rank+changing;
@@ -48,14 +52,14 @@ function rankingTriggerDown(el){
         return false;
     }
 
-    var rankingWidget=el.closest(".ranking");
-    var curvalue=rankingWidget.data("curvalue");
+    var rankingWidget=el.closest(".rating");
+    var curvalue=parseInt(rankingWidget.data("curvalue"));
     var postid=rankingWidget.data("postid");
     var trigger_up=rankingWidget.find(".up");
     var trigger_down=rankingWidget.find(".down");
     var count_label=rankingWidget.find(".label");
     var changing=0;
-    var rank=count_label.html();
+    var rank=parseInt(count_label.html());
 
     if(curvalue=="1"){
         changing=-2;
@@ -80,16 +84,16 @@ function rankingTriggerDown(el){
 
 
 $(document).ready(function() {
-    rankingWidgets=$('.ranking[data-allowvote="1"]');
+    rankingWidgets=$('.rating[data-allowvote="1"]');
 
     for(var i=0; i<rankingWidgets.length;i++){
         var rankingWidget=rankingWidgets.eq(i);
-
+        //console.log(rankingWidget);
         rankingWidget.find(".up").click(function(){
-            rankingTriggerUp(this);
+            rankingTriggerUp($(this));
         });
         rankingWidget.find(".down").click(function(){
-            rankingTriggerDown(this);
+            rankingTriggerDown($(this));
         });
 
     }
