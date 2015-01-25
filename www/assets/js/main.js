@@ -5,15 +5,15 @@ function rankingTriggerSend(postid,rank){
     $.ajax({
         type: "POST",
         url: "/ajax/ranking",
-        data: { postid: postid, rank: rank }
+        data: { postid: postid, rank: rank },
+        success: function(data){
+            console.log(data);
+        }
     });
 //.done(function( html ) {        $( "#results" ).append( html );    });
 }
 
 function rankingTriggerUp(el){
-    if(el.hasClass("active")){
-        return false;
-    }
 
     var rankingWidget=el.closest(".rating");
     var curvalue=parseInt(rankingWidget.data("curvalue"));
@@ -24,18 +24,22 @@ function rankingTriggerUp(el){
     var changing=0;
     var rank=parseInt(count_label.html());
 
-    console.log(rankingWidget);
+    if(rankingWidget.hasClass("up")){
+        return false;
+    }
+
+   // console.log(rankingWidget);
 
     if(curvalue=="-1"){
         changing=2;
-        trigger_down.removeClass("active");
+        rankingWidget.removeClass("dowm");
     }else if(curvalue=="0"){
         changing=1;
-        trigger_up.addClass("active");
-        trigger_down.removeClass("active");
+        rankingWidget.addClass("up");
+        rankingWidget.removeClass("down");
     }else{
         changing=0;
-        trigger_up.addClass("active");
+        rankingWidget.addClass("up");
         return false;
     }
     console.log(changing);
@@ -48,9 +52,6 @@ function rankingTriggerUp(el){
 }
 
 function rankingTriggerDown(el){
-    if(el.hasClass("active")){
-        return false;
-    }
 
     var rankingWidget=el.closest(".rating");
     var curvalue=parseInt(rankingWidget.data("curvalue"));
@@ -61,16 +62,20 @@ function rankingTriggerDown(el){
     var changing=0;
     var rank=parseInt(count_label.html());
 
+    if(rankingWidget.hasClass("down")){
+        return false;
+    }
+
     if(curvalue=="1"){
         changing=-2;
-        trigger_up.removeClass("active");
+        rankingWidget.removeClass("up");
     }else if(curvalue=="0"){
         changing=-1;
-        trigger_down.addClass("active");
-        trigger_up.removeClass("active");
+        rankingWidget.addClass("down");
+        rankingWidget.removeClass("up");
     }else{
         changing=0;
-        trigger_down.addClass("active");
+        rankingWidget.addClass("down");
         return false;
     }
 

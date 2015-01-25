@@ -78,6 +78,8 @@ class ajaxController extends baseController{
         $ranking->loadByFields(array("post_id" => $post_id, "user_id" => App::user()->id));
         $changing=$rank-$ranking->rank;
         $ranking->rank=$rank;
+        $ranking->post_id=$post_id;
+        $ranking->user_id=App::user()->id;
         $ranking->save();
 
         $rank=$post->rank+$changing;
