@@ -141,7 +141,7 @@ class baseModel {
         $sql="select * from ".$this->tableName();
         if(count($where_arr)) {
             $sql .=" where " . implode(" and " , $where_arr);
-            }
+        }
         $no_limit_sql=$sql;
         if(!$is_multi){
             $sql.=" limit 0,1";

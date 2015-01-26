@@ -14,29 +14,40 @@
 
 <div class="menu1">
     <br id="tab2"/><br id="tab3"/><br id="tab4"/>
-    <a href="#tab1">Профиль</a><a href="#tab2">Рекомендации</a><a href="#tab3">Популярное</a><a href="#tab4">Мои места</a>
+    <a href="#tab1">Профиль</a><a href="#tab2">Посты</a><a href="#tab3">Комментарии</a><!--<a href="#tab4">Мои места</a>-->
     <div>
         <h3>
             Основная информация
 
         </h3>
-        <p>Имя:</p>
-        <p>Логин:</p>
-        <p>Дата рождения:</p>
-        <p>Пол:</p>
-
+        <p>E-mail: <?=$this->user->email?></p>
+        <p>Логин: <?=$this->user->login?></p>
+        <p>Дата регистрации: <?=$this->user->created_time?></p>
+<!--
         <h3>
             Контактная информация
         </h3>
         <p>E-mail:</p>
-        <p>Skype:</p>
+        <p>Skype:</p>-->
     </div>
-    <div>вкладка 2</div>
-    <div>вкладка 3</div>
-    <div>вкладка 4</div>
+    <div>
+        <? foreach($this->user->posts as $post){ ?>
+            <p>
+                <a href="/post/view/<?=$post->id?>#comments"><?=$post->title?></a>
+            </p>
+        <? } ?>
+    </div>
+    <div>
+        <? foreach($this->user->comments as $comment){ ?>
+            <p>
+                <a href="/post/view/<?=$comment->post_id?>#comments"><?=$comment->content?></a>
+            </p>
+        <? } ?>
+    </div>
+    <!--<div>вкладка 4</div>-->
 </div>
 
-
+<!--
 <section class="container">
     <h2>Форма поиска</h2>
         <div class="dark">
@@ -46,3 +57,4 @@
         </form>
     </div>
 </section>
+-->

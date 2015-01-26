@@ -9,6 +9,17 @@
 class User extends baseModel{
 //    public $_tableName="user";
 
-
+    public function foreignFields(){
+        return array(
+            "posts" => array("from" => $this->get("id"),
+                "model" => "Post",
+                "field" => "user_id",
+                "multi" => true),
+            "comments" => array("from" => $this->get("id"),
+                "model" => "Comment",
+                "field" => "user_id",
+                "multi" => true),
+        );
+    }
 
 }
