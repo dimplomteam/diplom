@@ -19,6 +19,7 @@ class postController extends baseController{
     public function getPostsLine($category,$offset,$limit){
         $posts = new Post;
         $posts->setLimits($offset,$limit);
+        $posts->setOrder("id DESC");
         $posts_arr = $posts->loadByFields($category,true);
         $posts_count = $posts->getFullCount();
         $pagination = new paginationWidget($offset,$limit,$posts_count,"/");

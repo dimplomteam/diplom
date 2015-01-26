@@ -7,13 +7,22 @@
  */
 
 class Comment extends baseModel{
-    public $_tableName="comment";
-    public $_foreignFields=array(
-        "user" => array("from" => "user_id",
-                        "model" => "User",
-                        "field" => "id",
-                        "multi" => false)
-    );
+//    public $_tableName="comment";
+//    public $_foreignFields=array(
+//        "user" => array("from" => "user_id",
+//                        "model" => "User",
+//                        "field" => "id",
+//                        "multi" => false)
+//    );
+
+    public function foreignFields(){
+        return array(
+            "user" => array("from" => $this->user_id,
+                "model" => "User",
+                "field" => "id",
+                "multi" => false)
+        );
+    }
 
     public function save(){
         $this->user_id=App::user()->id;

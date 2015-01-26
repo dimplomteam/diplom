@@ -7,19 +7,32 @@
  */
 
 class Post extends baseModel{
-    public $_tableName="post";
-    public $_foreignFields=array(
-        "comments" => array("from" => "id",
-            "model" => "Comment",
-            "field" => "post_id",
-            "multi" => true),
-        "user" => array("from" => "user_id",
-            "model" => "User",
-            "field" => "id",
-            "multi" => false),
-    );
+//    public $_tableName="post";
+//    public $_foreignFields=array(
+//        "comments" => array("from" => "id",
+//            "model" => "Comment",
+//            "field" => "post_id",
+//            "multi" => true),
+//        "user" => array("from" => "user_id",
+//            "model" => "User",
+//            "field" => "id",
+//            "multi" => false),
+//    );
 
     public $_categoriesList=array("non-sorted" => "n_sorted", "cat1" => "category1");
+
+    public function foreignFields(){
+        return array(
+            "comments" => array("from" => $this->id,
+                "model" => "Comment",
+                "field" => "post_id",
+                "multi" => true),
+            "user" => array("from" => $this->user_id,
+                "model" => "User",
+                "field" => "id",
+                "multi" => false),
+        );
+    }
 
     public function __get($key){
         $res=parent::__get($key);

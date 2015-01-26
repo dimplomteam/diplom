@@ -7,6 +7,6 @@
  */
 
 class Image extends baseModel{
-    public $_tableName="image";
+//    public $_tableName="image";
 
 }

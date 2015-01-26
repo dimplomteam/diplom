@@ -7,7 +7,7 @@
  */
 
 class User extends baseModel{
-    public $_tableName="user";
+//    public $_tableName="user";
 
 
 
