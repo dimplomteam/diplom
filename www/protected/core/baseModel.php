@@ -44,10 +44,11 @@ class baseModel {
     }
 
     public function __get($key){
-        if(array_key_exists($key,$this->_foreignFields)){
+        if(!$this->isLoaded()) return false;
+
+        if(array_key_exists($key,$this->foreignFields())){
             return $this->getForeignLoadedModel($key);
         }
-        if(!$this->isLoaded()) return false;
 
         if(isset($this->_fields[$key])){
             if($key=="created_time"){
@@ -172,7 +173,10 @@ class baseModel {
         return $this->_isLoaded=true;
     }
 
-    public function get(){
+    public function get($param=null){
+        if($param){
+            return (isset($this->_fields[$param])) ? $this->_fields[$param] : null;
+        }
         return $this->_fields;
     }
 

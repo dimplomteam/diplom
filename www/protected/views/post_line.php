@@ -14,7 +14,7 @@
     <div class="clr"></div>
     <p class="post-data"><span class="date"><?=$post->created_time?></span> &nbsp;
         |&nbsp; Posted by <a href="/profile/view/<?=$post->user->login?>"><?=$post->user->login?></a>
-    <?=$post->content?>
+    <div><?=$post->content?></div>
     <p class="spec"><a href="/post/view/<?=$post->id?>#comments" class="com fr">Comments (3)</a> <a href="/post/view/<?=$post->id?>" class="rm fl">Read more</a></p>
     <div class="clr"></div>
 </div>

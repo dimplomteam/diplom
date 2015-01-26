@@ -22,12 +22,14 @@ class Post extends baseModel{
     public $_categoriesList=array("non-sorted" => "n_sorted", "cat1" => "category1");
 
     public function foreignFields(){
+//        var_dump($this->id);exit;
+        if(!$this->isLoaded()) return array();
         return array(
-            "comments" => array("from" => $this->id,
+            "comments" => array("from" => $this->get("id"),
                 "model" => "Comment",
                 "field" => "post_id",
                 "multi" => true),
-            "user" => array("from" => $this->user_id,
+            "user" => array("from" => $this->get("user_id"),
                 "model" => "User",
                 "field" => "id",
                 "multi" => false),

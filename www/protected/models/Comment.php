@@ -17,7 +17,7 @@ class Comment extends baseModel{
 
     public function foreignFields(){
         return array(
-            "user" => array("from" => $this->user_id,
+            "user" => array("from" => $this->get("user_id"),
                 "model" => "User",
                 "field" => "id",
                 "multi" => false)
