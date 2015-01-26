@@ -15,11 +15,28 @@ class baseModel {
     private $_foreignLoadedModels=array();
     private $_multiLimits="0,10";
     private $_fullCount="0";
+    private $_ordering="";
 
-    public $_tableName;
-    public $_foreignFields=array();
+//    public $_tableName;
+//    public $_foreignFields=array();
 //    public $_offset="0";
 //    public $_limit="20";
+
+    public function foreignFields(){
+        return array();
+    }
+
+    public function getOrder(){
+        return ($this->_ordering) ? $this->_ordering : $this->_primaryKey." ASC";
+    }
+
+    public function setOrder($order){
+        $this->_ordering=$order;
+    }
+
+    public function tableName(){
+        return strtolower(get_class($this));
+    }
 
     public function setLimits($offset,$limit){
         $limit= intval($limit) ? intval($limit) : 10;
@@ -65,7 +82,7 @@ class baseModel {
                 $pairs[]=addslashes($key)."='".addslashes($val)."'";
             }
 
-            $sql="update ".$this->_tableName." set ".implode(", ",$pairs)." where ".$this->_primaryKey."=".$id;
+            $sql="update ".$this->tableName()." set ".implode(", ",$pairs)." where ".$this->_primaryKey."=".$id;
             App::db()->query($sql);
         }else{
             $keys=array();
@@ -75,7 +92,7 @@ class baseModel {
                 $keys[]=addslashes($key);
                 $values[]=addslashes($val);
             }
-            $sql="insert into ".$this->_tableName." (".implode(", ",$keys).") values ('".implode("', '",$values)."')  ";
+            $sql="insert into ".$this->tableName()." (".implode(", ",$keys).") values ('".implode("', '",$values)."')  ";
             App::db()->query($sql);
             $this->_fields[$this->_primaryKey]=App::db()->insert_id;
         }
@@ -86,14 +103,16 @@ class baseModel {
         if(array_key_exists($key,$this->_foreignLoadedModels)){
             return $this->_foreignLoadedModels[$key];
         }
-        $model=$this->_foreignFields[$key]["model"];
+        $foreignFields=$this->foreignFields();
+        $foreignFields=$foreignFields[$key];
+        $model=$foreignFields["model"];
         $this->_foreignLoadedModels[$key] = new $model;
 
-        $from=$this->_foreignFields[$key]["from"];
-        if($this->_foreignFields[$key]["multi"]){
-            $this->_foreignLoadedModels[$key]=$this->_foreignLoadedModels[$key]->loadByFields(array($this->_foreignFields[$key]["field"] => $this->$from),true);
+        $from=$foreignFields["from"];
+        if($foreignFields["multi"]){
+            $this->_foreignLoadedModels[$key]=$this->_foreignLoadedModels[$key]->loadByFields(array($foreignFields["field"] => $from),true);
         }else{
-            $this->_foreignLoadedModels[$key]->loadById($this->$from);
+            $this->_foreignLoadedModels[$key]->loadById($from);
         }
         return $this->_foreignLoadedModels[$key];
     }
@@ -105,7 +124,7 @@ class baseModel {
     public function loadById($id){
         $id=intval($id);
         if(!$id) return false;
-        $sql="select * from ".$this->_tableName." where ".$this->_primaryKey."=".$id." limit 0,1";
+        $sql="select * from ".$this->tableName()." where ".$this->_primaryKey."=".$id." limit 0,1";
         $res=App::db()->query($sql);
         if(!$res->num_rows) return false;
         $this->_fields=$res->fetch_assoc();
@@ -118,7 +137,7 @@ class baseModel {
         foreach($arr as $key => $val) {
             $where_arr[] = "`".addslashes($key)."`" . " = " . "\"".addslashes($val)."\"";
         }
-        $sql="select * from ".$this->_tableName;
+        $sql="select * from ".$this->tableName();
         if(count($where_arr)) {
             $sql .=" where " . implode(" and " , $where_arr);
             }
@@ -126,7 +145,7 @@ class baseModel {
         if(!$is_multi){
             $sql.=" limit 0,1";
         }else{
-            $sql.= " limit ".$this->_multiLimits;
+            $sql.= " ORDER BY ".$this->getOrder()." limit ".$this->_multiLimits;
         }
         $res=App::db()->query($sql);
         if((!$res->num_rows) && !$is_multi) return false;
@@ -157,9 +176,9 @@ class baseModel {
         return $this->_fields;
     }
 
-    public function getTable(){
-        return $this->_tableName;
-    }
+//    public function getTable(){
+//        return $this->_tableName;
+//    }
 
     public function unload(){
         $this->_fields=array();
