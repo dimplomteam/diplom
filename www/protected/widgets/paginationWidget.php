@@ -6,8 +6,7 @@
  * Time: 12:32
  */
 
-class paginationWidget extends baseObject{
-    public $result_html="";
+class paginationWidget extends baseWidget{
 
     public function __coustruct($offset,$limit,$count,$base_uri="/"){
         $per_page=$limit-$offset;
@@ -27,8 +26,5 @@ class paginationWidget extends baseObject{
         return $this->result_html=$result_html;
     }
 
-    public function __toString(){
-        return $this->result_html;
-    }
 
 }

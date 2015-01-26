@@ -7,11 +7,12 @@
 <link href="/assets/css/yana.css" rel="stylesheet" type="text/css" />
 <link href="/assets/css/sergey.css" rel="stylesheet" type="text/css" />
 <link href="/assets/css/nastya.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="/assets/js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery-1.11.2.min.js"></script>
 <script type="text/javascript" src="/assets/js/script.js"></script>
 <script type="text/javascript" src="/assets/js/cufon-yui.js"></script>
 <script type="text/javascript" src="/assets/js/arial.js"></script>
 <script type="text/javascript" src="/assets/js/cuf_run.js"></script>
+<script type="text/javascript" src="/assets/js/main.js"></script>
 </head>
 <body>
 <div class="main">

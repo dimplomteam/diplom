@@ -12,12 +12,14 @@ function __autoload($class_name) {
         "currentUser" => "classes/currentUser",
 
         "paginationWidget" => "widgets/paginationWidget",
+        "rankingWidget" => "widgets/rankingWidget",
 
         "App" => "core/App",
         "baseModel" => "core/baseModel",
         "baseController" => "core/baseController",
         "baseView" => "core/baseView",
         "baseObject" => "core/baseObject",
+        "baseWidget" => "core/baseWidget",
 
         "Comment" => "models/Comment",
         "Post" => "models/Post",

@@ -9,11 +9,12 @@
 
 
 <div class="article">
-    <div class="rating">
+   <!-- <div class="rating">
         <span class="up"></span>
         <span class="label">1234</span>
         <span class="down"></span>
-    </div>
+    </div>-->
+    <?=new rankingWidget($this->post->id,$this->post->rank)?>
     <h2><span><?=$this->post->title?></span></h2>
     <div class="clr"></div>
     <p class="post-data"><span class="date"><?=$this->post->created_time?></span> &nbsp;
