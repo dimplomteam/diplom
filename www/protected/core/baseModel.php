@@ -17,7 +17,7 @@ class baseModel {
     private $_fullCount="0";
     private $_ordering="";
 
-//    public $_tableName;
+    public $_tableName;
 //    public $_foreignFields=array();
 //    public $_offset="0";
 //    public $_limit="20";
@@ -35,7 +35,7 @@ class baseModel {
     }
 
     public function tableName(){
-        return strtolower(get_class($this));
+        return ($this->_tableName) ? $this->_tableName : strtolower(get_class($this));
     }
 
     public function setLimits($offset,$limit){

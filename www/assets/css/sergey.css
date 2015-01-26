@@ -46,3 +46,8 @@
 .rating>.up:hover, .rating>.down:hover, .rating.up>.up, .rating.down>.down{
     opacity: 1;
 }
+
+
+.avatar_round{
+    margin-bottom: -230px;
+}

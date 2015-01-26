@@ -9,6 +9,7 @@
 class currentUser extends User {
 
     private $_isLogined=false;
+    public $_tableName="user";
 
     public function __construct(){
         session_start();
