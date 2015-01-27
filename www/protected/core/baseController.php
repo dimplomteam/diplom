@@ -23,6 +23,10 @@ class baseController extends baseObject{
         $view = new baseView($layout,$tempName,$params);
     }
 
+    public function __call($action,$request=array()){
+        $this->render("404");
+    }
+
 //    public function indexAction($request=array()){
 //
 //    }
