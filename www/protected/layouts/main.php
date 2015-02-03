@@ -13,6 +13,9 @@
 <script type="text/javascript" src="/assets/js/arial.js"></script>
 <script type="text/javascript" src="/assets/js/cuf_run.js"></script>
 <script type="text/javascript" src="/assets/js/main.js"></script>
+
+<script src="/assets/wysibb/jquery.wysibb.js"></script>
+<link rel="stylesheet" href="/assets/wysibb/theme/default/wbbtheme.css" />
 </head>
 <body>
 <div class="main">

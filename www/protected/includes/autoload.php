@@ -10,6 +10,7 @@ function __autoload($class_name) {
 //    var_dump($class_name);
     $map=array(
         "currentUser" => "classes/currentUser",
+        "viewHelper" => "classes/viewHelper",
 
         "paginationWidget" => "widgets/paginationWidget",
         "rankingWidget" => "widgets/rankingWidget",

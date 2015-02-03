@@ -90,4 +90,37 @@ class ajaxController extends baseController{
 
     }
 
+    public function img_uploadAction(){
+        // доступные форматы
+        $validFormat = array('jpg', 'jpeg', 'gif', 'png');
+
+        // формат файла
+        $sourcePath = pathinfo($_FILES['img']['name']);
+        $extension = strtolower($sourcePath['extension']);
+
+        // проверка корректности формата
+        if(in_array($extension, $validFormat))
+        {
+            $imageName = 'post_' . time().'_'.rand(100,999).'.'. $extension;
+            $file = PATH."assets/upload/".$imageName;
+            $url= "/assets/upload/".$imageName;
+            move_uploaded_file( $_FILES['img']['tmp_name'], $file);
+
+            if (isset($_POST["iframe"])) {
+                $idarea = $_POST["idarea"];
+                echo 'OK
+';
+            }
+            else {
+                // use for drag&drop
+                header("Content-type: text/javascript");
+                echo '{"status":1,"msg":"OK","image_link":"' . $url . '","thumb_link":false}';
+            }
+        }
+        else
+        {
+            echo "false"; exit;
+        }
+    }
+
 }
