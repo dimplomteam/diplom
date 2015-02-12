@@ -8,6 +8,7 @@
 
 class User extends baseModel{
 //    public $_tableName="user";
+public $_messages=null;
 
     public function foreignFields(){
         return array(
@@ -32,6 +33,28 @@ class User extends baseModel{
 
     public function itsMe(){
         return ((App::user()->isLogined())&&(App::user()->id==$this->id));
+    }
+
+    public function getMessages(){
+        if(!$this->isLoaded()){
+            return array();
+        }
+        if($this->_messages!==null){
+            return $this->_messages;
+        }
+
+        $my_id=App::user()->id;
+        $sql="select * from message where ";
+        if($this->itsMe()){
+
+        }else{
+
+        }
+
+        $message=new Message;
+        $message->setOrder("id DESC");
+        $messages_list=$message->loadBySql($sql,true);
+        return $this->_messages=$messages_list;
     }
 
 }

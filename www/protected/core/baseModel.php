@@ -111,7 +111,8 @@ class baseModel {
 
         $from=$foreignFields["from"];
         if($foreignFields["multi"]){
-            $this->_foreignLoadedModels[$key]=$this->_foreignLoadedModels[$key]->loadByFields(array($foreignFields["field"] => $from),true);
+            $array2find=array($foreignFields["field"] => $from);
+            $this->_foreignLoadedModels[$key]=$this->_foreignLoadedModels[$key]->loadByFields($array2find,true);
         }else{
             $this->_foreignLoadedModels[$key]->loadById($from);
         }
@@ -162,6 +163,31 @@ class baseModel {
             $items[]=$item_obj;
         }
         $res=App::db()->query("SELECT COUNT(*) FROM ( ".$no_limit_sql." )  AS subquery");
+        $this->_fullCount=$res->fetch_row();
+        $this->_fullCount=$this->_fullCount[0];
+        return $items;
+    }
+
+    public function loadBySql($sql,$is_multi=false){
+        if(!$is_multi){
+            $sql.=" limit 0,1";
+        }else{
+            $sql.= " ORDER BY ".$this->getOrder()." limit ".$this->_multiLimits;
+        }
+        $res=App::db()->query($sql);
+        if((!$res->num_rows) && !$is_multi) return false;
+        if(!$is_multi) {
+            $this->load($res->fetch_assoc());
+            return $this->_isLoaded = true;
+        }
+        $items=array();
+        while($item = $res->fetch_assoc()){
+            $item_obj_name=get_class($this);
+            $item_obj= new $item_obj_name;
+            $item_obj->load($item);
+            $items[]=$item_obj;
+        }
+        $res=App::db()->query("SELECT COUNT(*) FROM ( ".$sql." )  AS subquery");
         $this->_fullCount=$res->fetch_row();
         $this->_fullCount=$this->_fullCount[0];
         return $items;

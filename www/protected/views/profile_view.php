@@ -14,7 +14,7 @@
 
 <div class="menu1">
     <br id="tab2"/><br id="tab3"/><br id="tab4"/>
-    <a href="#tab1">Профиль</a><a href="#tab2">Посты</a><a href="#tab3">Комментарии</a><!--<a href="#tab4">Мои места</a>-->
+    <a href="#tab1">Профиль</a><a href="#tab2">Посты</a><a href="#tab3">Комментарии</a><? if(App::user()->isLogined()){?><a href="#tab4">Сообщения</a><?}?>
     <div>
         <h3>
             Основная информация
@@ -52,7 +52,40 @@
             </p>
         <? } ?>
     </div>
-    <!--<div>вкладка 4</div>-->
+    <? if(App::user()->isLogined()){?>
+    <div>
+        <table id="private messages">
+            <thead>
+            <tr>
+                <td>От кого</td>
+                <td>Сообщение</td>
+            </tr>
+            </thead>
+            <tbody>
+            <? foreach($this->messages as $message){?>
+            <tr>
+                <td><a href="/profile/wiev/$message->from_user->id#tab4"$message->from_user->login</td>
+                <td title="$message->created_time">$message->content</td>
+            </tr>
+            <? } ?>
+            </tbody>
+        </table>
+        <? if(!((!count($this->messages)) and ($this->user->itsMe()))){?>
+        <form action="/profile/send_message" method="post">
+            <? if(!$this->user->itsMe()) {?>
+                <input type="hidden" name="user_to_id" value="<?=$this->user->id;?>">
+            <?}else{?>
+                <select name="user_to_id">
+                    <? foreach($this->dialogers as $user){?>
+                        <option value="<?=$user->id?>"><?=$user->login?></option>
+                   <? }?>
+                </select>
+                <?}?>
+            <textarea></textarea>
+            </form>
+        <?}?>
+    </div>
+    <?}?>
 </div>
 
 <!--

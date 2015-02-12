@@ -21,7 +21,7 @@ body {
 .menu1 #tab3:target ~ a:nth-of-type(1),
 .menu1 #tab4:target ~ a:nth-of-type(1),
 .menu1 > div {
-    width: 400px;
+    /*width: 400px;*/
     height: 500px;
     border-radius: 0% 4% 4%;
     padding: 5px;

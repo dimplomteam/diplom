@@ -147,7 +147,7 @@ class ajaxController extends baseController{
         App::user()->image_src=$url;
         App::user()->save();
 
-        //App::redirect("/profile");
+        App::redirect("/profile");
     }
 
 
