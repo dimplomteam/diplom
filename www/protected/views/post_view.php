@@ -19,14 +19,14 @@
     <div class="clr"></div>
     <p class="post-data"><span class="date"><?=$this->post->created_time?></span> &nbsp;
         |&nbsp; Posted by <a href="/profile/view/<?=$this->post->user->login?>"><?=$this->post->user->login?></a></p>
-        <div class="content"><?=$this->post->content?></div>
+        <div class="content"><?=viewHelper::BB($this->post->content)?></div>
 
     <div class="clr"></div>
 </div>
 
 <?php foreach($this->post->comments as $comment) { ?>
 
-<div class="comment"> <a href="#"><img src="images/userpic.gif" width="40" height="40" alt="" class="userpic" /></a>
+<div class="comment"> <a href="#"><img src="<?=$comment->user->image_src?>" width="40" height="40" alt="" class="userpic" /></a>
     <p><a href="#"><?=$comment->user->login?></a> Says:<br />
         <?=$comment->created_time?></p>
     <p><?=$comment->content?></p>
@@ -42,7 +42,7 @@
         <ol>
             <li>
                 <label for="content">Your Message</label>
-                <textarea id="content" name="content" rows="8" cols="50"></textarea>
+                <textarea id="content" name="content" rows="8" cols="50" required="required"></textarea>
             </li>
             <li>
                 <input type="submit" class="send">

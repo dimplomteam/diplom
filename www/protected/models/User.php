@@ -22,4 +22,12 @@ class User extends baseModel{
         );
     }
 
+    public function __get($key){
+        if(($key=="image_src")&&(!$this->get($key))){
+            return "/assets/img/noavatar.jpg";
+        }
+
+        return parent::__get($key);
+    }
+
 }

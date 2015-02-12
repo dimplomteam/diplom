@@ -19,9 +19,10 @@ CREATE TABLE IF NOT EXISTS `user` (
 ALTER TABLE  `user` ADD  `created_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ;
 ALTER TABLE  `user` CHANGE  `image_id`  `image_id` INT( 10 ) UNSIGNED NOT NULL DEFAULT  '0';
 ALTER TABLE  `user` ADD  `role` VARCHAR( 255 ) NULL AFTER  `email` ;
+ALTER TABLE  `user` CHANGE  `image_id`  `image_src` VARCHAR( 255 ) NULL DEFAULT NULL ;
 
 INSERT INTO `user` (`id`, `login`, `pass`, `email`, `role`, `phone`, `image_id`, `created_time`) VALUES
-(1, 'admin', 'admin', 'admin@admin.ru', NULL, '234567', 0, '2015-01-19 22:17:23');
+(1, 'admin', 'admin', 'admin@admin.ru', NULL, '234567', NULL, '2015-01-19 22:17:23');
 
 CREATE TABLE IF NOT EXISTS `post` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,

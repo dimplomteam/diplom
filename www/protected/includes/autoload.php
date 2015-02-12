@@ -11,6 +11,7 @@ function __autoload($class_name) {
     $map=array(
         "currentUser" => "classes/currentUser",
         "viewHelper" => "classes/viewHelper",
+        "fileUploader" => "classes/fileUploader",
 
         "paginationWidget" => "widgets/paginationWidget",
         "rankingWidget" => "widgets/rankingWidget",

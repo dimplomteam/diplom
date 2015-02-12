@@ -51,3 +51,16 @@
 .avatar_round{
     margin-bottom: -230px;
 }
+
+#post_create_form input[name="title"]{
+    width: 99%;
+    margin-bottom: 20px;
+}
+
+#post_create_form input[type="submit"]{
+    width: 100%;
+}
+
+#post_create_form textarea{
+    height:300px;
+}

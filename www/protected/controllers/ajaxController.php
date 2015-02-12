@@ -54,7 +54,7 @@ class ajaxController extends baseController{
             App::redirect("/login");
         }
         $comment = new Comment;
-        $comment->load(array("post_id" => $post_id, "content" => $_POST["content"]));
+        $comment->load(array("post_id" => $post_id, "content" => htmlspecialchars($_POST["content"])));
         $id=$comment->save();
         //var_dump($post);
         App::redirect("/post/view/".$post_id);
@@ -91,36 +91,63 @@ class ajaxController extends baseController{
     }
 
     public function img_uploadAction(){
-        // доступные форматы
-        $validFormat = array('jpg', 'jpeg', 'gif', 'png');
-
-        // формат файла
-        $sourcePath = pathinfo($_FILES['img']['name']);
-        $extension = strtolower($sourcePath['extension']);
-
-        // проверка корректности формата
-        if(in_array($extension, $validFormat))
-        {
-            $imageName = 'post_' . time().'_'.rand(100,999).'.'. $extension;
-            $file = PATH."assets/upload/".$imageName;
-            $url= "/assets/upload/".$imageName;
-            move_uploaded_file( $_FILES['img']['tmp_name'], $file);
-
+        if($url=fileUploader::saveImage($_FILES['img'])){
             if (isset($_POST["iframe"])) {
                 $idarea = $_POST["idarea"];
                 echo 'OK
 ';
-            }
-            else {
+            }else {
                 // use for drag&drop
                 header("Content-type: text/javascript");
                 echo '{"status":1,"msg":"OK","image_link":"' . $url . '","thumb_link":false}';
             }
-        }
-        else
-        {
+
+        }else{
             echo "false"; exit;
         }
+
+//        // доступные форматы
+//        $validFormat = array('jpg', 'jpeg', 'gif', 'png');
+//
+//        // формат файла
+//        $sourcePath = pathinfo($_FILES['img']['name']);
+//        $extension = strtolower($sourcePath['extension']);
+//
+//        // проверка корректности формата
+//        if(in_array($extension, $validFormat))
+//        {
+//            $imageName = 'img_' . time().'_'.rand(100,999).'.'. $extension;
+//            $file = PATH."assets/upload/".$imageName;
+//            $url= "/assets/upload/".$imageName;
+//            move_uploaded_file( $_FILES['img']['tmp_name'], $file);
+//
+//            if (isset($_POST["iframe"])) {
+//                $idarea = $_POST["idarea"];
+//                echo 'OK
+//';
+//            }
+//            else {
+//                // use for drag&drop
+//                header("Content-type: text/javascript");
+//                echo '{"status":1,"msg":"OK","image_link":"' . $url . '","thumb_link":false}';
+//            }
+//        }
+//        else
+//        {
+//            echo "false"; exit;
+//        }
     }
+
+    public function avatar_uploadAction(){
+        if(!App::user()->isLogined()){
+            App::redirect("/login");
+        }
+
+        $url=fileUploader::saveImage($_FILES['img']);
+
+        App::redirect("/profile");
+    }
+
+
 
 }
