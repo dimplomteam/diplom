@@ -30,4 +30,8 @@ class User extends baseModel{
         return parent::__get($key);
     }
 
+    public function itsMe(){
+        return ((App::user()->isLogined())&&(App::user()->id==$this->id));
+    }
+
 }

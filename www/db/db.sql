@@ -21,7 +21,7 @@ ALTER TABLE  `user` CHANGE  `image_id`  `image_id` INT( 10 ) UNSIGNED NOT NULL D
 ALTER TABLE  `user` ADD  `role` VARCHAR( 255 ) NULL AFTER  `email` ;
 ALTER TABLE  `user` CHANGE  `image_id`  `image_src` VARCHAR( 255 ) NULL DEFAULT NULL ;
 
-INSERT INTO `user` (`id`, `login`, `pass`, `email`, `role`, `phone`, `image_id`, `created_time`) VALUES
+INSERT INTO `user` (`id`, `login`, `pass`, `email`, `role`, `phone`, `image_src`, `created_time`) VALUES
 (1, 'admin', 'admin', 'admin@admin.ru', NULL, '234567', NULL, '2015-01-19 22:17:23');
 
 CREATE TABLE IF NOT EXISTS `post` (

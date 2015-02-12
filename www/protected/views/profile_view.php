@@ -8,7 +8,7 @@
 //var_dump($this->user);
 ?>
 <div class="avatar_round">
-    <img src="http://autokadabra.ru/system/uploads/users/1/1938/small.png" alt="avatar" />
+    <img src="<?=$this->user->image_src?>" alt="avatar" />
 </div>
 
 
@@ -23,6 +23,14 @@
         <p>E-mail: <?=$this->user->email?></p>
         <p>Логин: <?=$this->user->login?></p>
         <p>Дата регистрации: <?=$this->user->created_time?></p>
+
+        <? if($this->user->itsMe()){?>
+<form action="/ajax/avatar_upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="img"><br>
+    <input type="submit">
+</form>
+
+        <?}?>
 <!--
         <h3>
             Контактная информация

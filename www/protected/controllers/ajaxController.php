@@ -144,8 +144,10 @@ class ajaxController extends baseController{
         }
 
         $url=fileUploader::saveImage($_FILES['img']);
+        App::user()->image_src=$url;
+        App::user()->save();
 
-        App::redirect("/profile");
+        //App::redirect("/profile");
     }
 
 
