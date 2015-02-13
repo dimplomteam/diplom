@@ -94,8 +94,7 @@ class ajaxController extends baseController{
         if($url=fileUploader::saveImage($_FILES['img'])){
             if (isset($_POST["iframe"])) {
                 $idarea = $_POST["idarea"];
-                echo 'OK
-';
+                echo '<html><body>OK<script>window.parent.$("#'.$idarea.'").insertImage("'. $url .'",false).closeModal().updateUI();</script></body></html>';
             }else {
                 // use for drag&drop
                 header("Content-type: text/javascript");
@@ -106,36 +105,6 @@ class ajaxController extends baseController{
             echo "false"; exit;
         }
 
-//        // доступные форматы
-//        $validFormat = array('jpg', 'jpeg', 'gif', 'png');
-//
-//        // формат файла
-//        $sourcePath = pathinfo($_FILES['img']['name']);
-//        $extension = strtolower($sourcePath['extension']);
-//
-//        // проверка корректности формата
-//        if(in_array($extension, $validFormat))
-//        {
-//            $imageName = 'img_' . time().'_'.rand(100,999).'.'. $extension;
-//            $file = PATH."assets/upload/".$imageName;
-//            $url= "/assets/upload/".$imageName;
-//            move_uploaded_file( $_FILES['img']['tmp_name'], $file);
-//
-//            if (isset($_POST["iframe"])) {
-//                $idarea = $_POST["idarea"];
-//                echo 'OK
-//';
-//            }
-//            else {
-//                // use for drag&drop
-//                header("Content-type: text/javascript");
-//                echo '{"status":1,"msg":"OK","image_link":"' . $url . '","thumb_link":false}';
-//            }
-//        }
-//        else
-//        {
-//            echo "false"; exit;
-//        }
     }
 
     public function avatar_uploadAction(){
