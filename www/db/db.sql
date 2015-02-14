@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS `post`;
 DROP TABLE IF EXISTS `comment`;
 DROP TABLE IF EXISTS `ranking`;
 DROP TABLE IF EXISTS `image`;
+DROP TABLE IF EXISTS `message`;
 
 
 CREATE TABLE IF NOT EXISTS `user` (
@@ -23,6 +24,8 @@ ALTER TABLE  `user` CHANGE  `image_id`  `image_src` VARCHAR( 255 ) NULL DEFAULT 
 
 INSERT INTO `user` (`id`, `login`, `pass`, `email`, `role`, `phone`, `image_src`, `created_time`) VALUES
 (1, 'admin', 'admin', 'admin@admin.ru', NULL, '234567', NULL, '2015-01-19 22:17:23');
+INSERT INTO `user` (`id`, `login`, `pass`, `email`, `role`, `phone`, `image_src`, `created_time`) VALUES
+(2, 'admin1', 'admin1', 'admin@admin.ru', NULL, '234567', NULL, '2015-01-19 22:17:23');
 
 CREATE TABLE IF NOT EXISTS `post` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -55,12 +58,12 @@ CREATE TABLE IF NOT EXISTS `ranking` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
-CREATE TABLE IF NOT EXISTS `image` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` int(10) unsigned NOT NULL DEFAULT '0',
-  `post_id` int(10) unsigned NOT NULL DEFAULT '0',
-  `title` text,
-  `url` text,
+CREATE TABLE IF NOT EXISTS `message` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `to_user_id` int(11) NOT NULL DEFAULT '0',
+  `from_user_id` int(11) NOT NULL DEFAULT '0',
+  `content` text,
   `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+

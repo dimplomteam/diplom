@@ -54,34 +54,38 @@
     </div>
     <? if(App::user()->isLogined()){?>
     <div>
-        <table id="private messages">
+        <table id="private_messages">
             <thead>
             <tr>
-                <td>От кого</td>
+                <td>От кого =&gt; Кому</td>
                 <td>Сообщение</td>
             </tr>
             </thead>
             <tbody>
             <? foreach($this->messages as $message){?>
             <tr>
-                <td><a href="/profile/wiev/$message->from_user->id#tab4"$message->from_user->login</td>
-                <td title="$message->created_time">$message->content</td>
+                <td><a href="/profile/view/<?=$message->from_user->login;?>#tab4"><?=$message->from_user->login;?></a>
+                    =&gt;
+                    <a href="/profile/view/<?=$message->to_user->login;?>#tab4"><?=$message->to_user->login;?></a>
+                </td>
+                <td title="<?=$message->created_time;?>"><?=$message->content;?></td>
             </tr>
             <? } ?>
             </tbody>
         </table>
         <? if(!((!count($this->messages)) and ($this->user->itsMe()))){?>
-        <form action="/profile/send_message" method="post">
+        <form action="/ajax/send_message" method="post" id="send_message_form">
             <? if(!$this->user->itsMe()) {?>
                 <input type="hidden" name="user_to_id" value="<?=$this->user->id;?>">
             <?}else{?>
                 <select name="user_to_id">
-                    <? foreach($this->dialogers as $user){?>
-                        <option value="<?=$user->id?>"><?=$user->login?></option>
+                    <? foreach($this->dialogers as $id => $login){?>
+                        <option value="<?=$id?>"><?=$login?></option>
                    <? }?>
-                </select>
+                </select><br>
                 <?}?>
-            <textarea></textarea>
+            <textarea name="content" required="required"></textarea><br>
+            <input type="submit">
             </form>
         <?}?>
     </div>

@@ -17,10 +17,25 @@ class profileController extends baseController{
         }
         $user = new User;
         $user->loadByFields(array("login"=>$called_username));
+        $messages=$user->getMessages();
+        $dialogers=array();
+        foreach($messages as $message){
+            $to_user=$message->to_user;
+            $from_user=$message->from_user;
+            if(!$to_user->itsMe()){
+                $dialogers[$to_user->id]=$to_user->login;
+            }
+            if(!$from_user->itsMe()){
+                $dialogers[$from_user->id]=$from_user->login;
+            }
+        }
         if(!$user->isLoaded()){
             $this->render("404");
         }else{
-            $this->render("profile_view",array("user" => $user));
+            $this->render("profile_view",array(
+                "user" => $user,
+                "messages" => $messages,
+                "dialogers" => $dialogers));
         }
 
 

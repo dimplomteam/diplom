@@ -27,7 +27,7 @@ function __autoload($class_name) {
         "Post" => "models/Post",
         "User" => "models/User",
         "Ranking" => "models/Ranking",
-        "Image" => "models/Image",
+        "Message" => "models/Message",
 
         "postController" => "controllers/postController",
         "profileController" => "controllers/profileController",

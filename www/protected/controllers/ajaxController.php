@@ -119,6 +119,20 @@ class ajaxController extends baseController{
         App::redirect("/profile");
     }
 
+    public function send_messageAction(){
+        if(!App::user()->isLogined()){
+            App::redirect("/login");
+        }
+        $message = new Message();
+        $message->from_user_id=App::user()->id;
+        $message->to_user_id=intval($_POST["user_to_id"]);
+        $message->content=htmlspecialchars($_POST["content"]);
+        $message->save();
+        $user = new User();
+        $user->loadById(intval($_POST["user_to_id"]));
+        App::redirect("/profile/view/".$user->login."#tab4");
+    }
+
 
 
 }

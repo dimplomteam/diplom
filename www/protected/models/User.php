@@ -46,14 +46,17 @@ public $_messages=null;
         $my_id=App::user()->id;
         $sql="select * from message where ";
         if($this->itsMe()){
-
+            $sql.=" to_user_id='".$my_id."' or from_user_id='".$my_id."' ";
         }else{
-
+            $sql.=" (from_user_id='".$my_id."' and to_user_id='".$this->id."')
+            or (from_user_id='".$this->id."' and to_user_id='".$my_id."') ";
         }
 
         $message=new Message;
-        $message->setOrder("id DESC");
-        $messages_list=$message->loadBySql($sql,true);
+        //$message->setOrder("id DESC");
+        $message->setOrder("t.id ASC");
+        //$message->setLimitsStr("((SELECT COUNT(id) from message)-10),10");
+        $messages_list=$message->loadBySql("SELECT * FROM (".$sql." order by id desc limit 10) as t",true);
         return $this->_messages=$messages_list;
     }
 

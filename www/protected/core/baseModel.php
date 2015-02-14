@@ -43,6 +43,10 @@ class baseModel {
         $this->_multiLimits=intval($offset).",".intval($limit);
     }
 
+    public function setLimitsStr($limit_str){
+        $this->_multiLimits=$limit_str;
+    }
+
     public function __get($key){
         if(!$this->isLoaded()) return false;
 

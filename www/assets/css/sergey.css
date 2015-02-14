@@ -64,3 +64,31 @@
 #post_create_form textarea{
     height:300px;
 }
+
+#private_messages{
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#private_messages td{
+    border: 1px #666 solid;
+}
+
+#private_messages thead td{
+    font-weight: bold;
+}
+
+#private_messages tr td:first-of-type{
+    width:100px;
+}
+
+#send_message_form textarea, #send_message_form select, #send_message_form input[type="submit"]{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#send_message_form textarea{
+    width: 99%;
+    height:100px;
+}

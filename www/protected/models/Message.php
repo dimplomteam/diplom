@@ -7,5 +7,16 @@
  */
 
 class Message extends baseModel{
-// id created_time content to_user_id from_user_id
+    public function foreignFields(){
+        return array(
+            "to_user" => array("from" => $this->get("to_user_id"),
+                "model" => "User",
+                "field" => "id",
+                "multi" => false),
+            "from_user" => array("from" => $this->get("from_user_id"),
+                "model" => "User",
+                "field" => "id",
+                "multi" => false),
+        );
+    }
 }

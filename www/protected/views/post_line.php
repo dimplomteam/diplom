@@ -20,4 +20,5 @@
 </div>
 
 <? } ?>
+<?/*var_dump($this);*/?>
 <?=$this->pagination?>
