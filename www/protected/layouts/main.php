@@ -22,7 +22,7 @@
   <div class="main_resize">
     <div class="header">
       <div class="logo">
-        <h1><a href="/"><span>Волго</span>Place.ru<small></small></a></h1>
+        <h1><a href="/"><span>Достопримечательности</span> Волгограда<small></small></a></h1>
       </div>
     </div>
     <div class="content">
@@ -30,10 +30,8 @@
         <div class="menu_nav">
           <ul>
             <li class="active"><a href="/">Домой</a></li>
-            <li><a href="support.html">Support</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
+
+            <li><a href="contact.html">Регистрация</a></li>
             <?php if(!App::user()->isLogined()) {?>
             <a href="/login">Войти</a>
             <?php }else{?>
@@ -98,13 +96,10 @@
             <h2><span>Image Gallery</span></h2>
             <a href="#"><img src="/assets/img/pic_1.jpg" width="58" height="58" alt="" /></a> <a href="#"><img src="/assets/img/pic_2.jpg" width="58" height="58" alt="" /></a> <a href="#"><img src="images/pic_3.jpg" width="58" height="58" alt="" /></a> <a href="#"><img src="images/pic_4.jpg" width="58" height="58" alt="" /></a> <a href="#"><img src="images/pic_5.jpg" width="58" height="58" alt="" /></a> <a href="#"><img src="images/pic_6.jpg" width="58" height="58" alt="" /></a> </div>
           <div class="col c2">
-            <h2><span>Lorem Ipsum</span></h2>
-            <p>Lorem ipsum dolor<br />
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse bibendum. Cras id urna. <a href="#">Morbi tincidunt, orci ac convallis aliquam</a>, lectus turpis varius lorem, eu posuere nunc justo tempus leo. Donec mattis, purus nec placerat bibendum, dui pede condimentum odio, ac blandit ante orci ut diam.</p>
+
           </div>
           <div class="col c3">
-            <h2><span>About</span></h2>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse bibendum. Cras id urna. Morbi tincidunt, orci ac convallis aliquam, lectus turpis varius lorem, eu posuere nunc justo tempus leo. llorem, eu posuere nunc justo tempus leo. Donec mattis, purus nec placerat bibendum. <a href="#">Learn more...</a></p>
+
           </div>
           <div class="clr"></div>
         </div>
