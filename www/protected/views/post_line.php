@@ -10,6 +10,9 @@
 <? foreach($this->posts as $post){ ?>
 
 <div class="article">
+    <? if(App::user()->role=="admin"){?>
+    <div class="post_delete_btn" onclick="post_delete(this,<?=$post->id?>)">Удалить</div>
+    <?}?>
     <a href="/post/view/<?=$post->id?>"><h2><span><?=$post->title?></span></h2></a>
     <div class="clr"></div>
     <p class="post-data"><span class="date"><?=$post->created_time?></span> &nbsp;

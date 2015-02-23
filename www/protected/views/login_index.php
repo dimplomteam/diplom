@@ -12,3 +12,6 @@
     <input type="submit"><br>
     <span><?=$this->login_error?></span>
 </form>
+
+<br>
+<a href="/login/registration">Регистрация</a>

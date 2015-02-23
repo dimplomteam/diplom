@@ -104,3 +104,33 @@ $(document).ready(function() {
     }
 
 });
+
+function post_delete(el,id){
+    if (!confirm("Seriously?")) {
+        return false;
+    }
+    $(el).closest(".article").remove();
+    $.ajax({
+        type: "POST",
+        url: "/ajax/delete_post",
+        data: "id="+id,
+        success: function(msg){
+           // alert( "Data Saved: " + msg );
+        }
+    });
+}
+
+function comment_delete(el,id){
+    if (!confirm("Seriously?")) {
+        return false;
+    }
+    $(el).closest(".comment").remove();
+    $.ajax({
+        type: "POST",
+        url: "/ajax/delete_comment",
+        data: "id="+id,
+        success: function(msg){
+            // alert( "Data Saved: " + msg );
+        }
+    });
+}

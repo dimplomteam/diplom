@@ -214,6 +214,15 @@ class baseModel {
 //        return $this->_tableName;
 //    }
 
+    public function delete(){
+        if(!$this->isLoaded()){
+            return false;
+        }
+        App::db()->query("DELETE FROM ".$this->tableName()."
+        WHERE ".$this->_primaryKey." = '".$this->_fields[$this->_primaryKey]."'");
+        return $this->unload();
+    }
+
     public function unload(){
         $this->_fields=array();
         $this->_isLoaded=false;

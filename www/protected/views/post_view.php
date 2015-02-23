@@ -26,8 +26,12 @@
 
 <?php foreach($this->post->comments as $comment) { ?>
 
-<div class="comment"> <a href="#"><img src="<?=$comment->user->image_src?>" width="40" height="40" alt="" class="userpic" /></a>
-    <p><a href="#"><?=$comment->user->login?></a> Says:<br />
+<div class="comment">
+    <? if(App::user()->role=="admin"){?>
+        <div class="comment_delete_btn" onclick="comment_delete(this,<?=$comment->id?>)">Удалить</div>
+    <?}?>
+    <a href="/profile/view/<?=$comment->user->login?>"><img src="<?=$comment->user->image_src?>" width="40" height="40" alt="" class="userpic" /></a>
+    <p><a href="/profile/view/<?=$comment->user->login?>"><?=$comment->user->login?></a> Says:<br />
         <?=$comment->created_time?></p>
     <p><?=$comment->content?></p>
 </div>

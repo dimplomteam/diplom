@@ -31,7 +31,7 @@
           <ul>
             <li class="active"><a href="/">Домой</a></li>
 
-            <li><a href="contact.html">Регистрация</a></li>
+            <!--<li><a href="contact.html">Регистрация</a></li>-->
             <?php if(!App::user()->isLogined()) {?>
             <a href="/login">Войти</a>
             <?php }else{?>
@@ -64,15 +64,17 @@
             <h2 class="star">Навигация</h2>
             <div class="clr"></div>
             <ul class="sb_menu">
-              <li class="active"><a href="#" style="border-radius: 5px;">Сообщения</a></li>
-              <li><a href="#" style="border-radius: 5px;">Мои посты</a></li>
-              <li><a href="#" style="border-radius: 5px;">Мои друзья</a></li>
-              <li><a href="#" style="border-radius: 5px;">Моя лента</a></li>
-              <li><a href="#" style="border-radius: 5px;">Мои подписки</a></li>
-              <li><a href="#" style="border-radius: 5px;">Мои комментарии</a></li>
-              <li><a href="#" style="border-radius: 5px;">Избранное</a></li>
-              <li><a href="#" style="border-radius: 5px;">Настройки</a></li>
+              <li><a href="/" style="border-radius: 5px;">Домой</a></li><!-- class="active"-->
 
+              <? foreach (Post::$_categoriesList as $title => $value) {?>
+              <li><a href="/post/<?=$value?>"" style="border-radius: 5px;">&nbsp;&nbsp;&nbsp;<?=$title?></a></li>
+              <?}?>
+              <? if(App::user()->isLogined()){?>
+                <li><a href="/profile" style="border-radius: 5px;">Профиль</a></li>
+                <li><a href="/post/create" style="border-radius: 5px;">Написать пост</a></li>
+              <?}else{?>
+                <li><a href="/login" style="border-radius: 5px;">Войти</a></li>
+              <?}?>
             </ul>
           </div>
          <!--<div class="gadget">

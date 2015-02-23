@@ -27,11 +27,11 @@ class loginController extends baseController {
         if(App::user()->isLogined()){
             App::redirect("/profile");
         }
-        $this->render("login_registration",array("login_error" => ""));
+        $this->render("login_registration",array("registration_error" => ""));
     }
 
     public function registration_failAction($request=array()){
-        $this->render("login_registration",array("login_error" => "try something else"));
+        $this->render("login_registration",array("registration_error" => "try something else"));
     }
 
 }

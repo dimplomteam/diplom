@@ -30,9 +30,15 @@ class ajaxController extends baseController{
         $user->login=$_POST["login"];
         $user->pass=$_POST["pass"];
         $user->email=$_POST["email"];
-        if($user->save()){
-            App::user()->tryAuthPost();
-            App::redirect("/profile");
+
+        $user_try = new User();
+        $user_try->loadBySql("select * from `user`
+                  where login='" . $user->login . "' or email='" . $user->email . "'");
+        if (!$user_try->isLoaded()) {
+            if($user->save()){
+                App::user()->tryAuthPost();
+                App::redirect("/profile");
+            }
         }
         App::redirect("/login/registration_fail");
     }
@@ -42,7 +48,9 @@ class ajaxController extends baseController{
             App::redirect("/login");
         }
         $post = new Post;
-        $post->load(array("title" => $_POST["title"], "content" => $_POST["content"]));
+        $post->load(array("title" => $_POST["title"],
+            "content" => $_POST["content"],
+            "category" => $_POST["category"]));
         $id=$post->save();
         //var_dump($post);
         App::redirect("/post/view/".$id);
@@ -131,6 +139,25 @@ class ajaxController extends baseController{
         $user = new User();
         $user->loadById(intval($_POST["user_to_id"]));
         App::redirect("/profile/view/".$user->login."#tab4");
+    }
+
+    public function delete_postAction(){
+        if(App::user()->role!="admin"){
+            return false;
+        }
+        $post = new Post();
+        $post->loadById($_POST["id"]);
+        $post->delete();
+
+    }
+
+    public function delete_commentAction(){
+        if(App::user()->role!="admin"){
+            return false;
+        }
+        $comment = new Comment();
+        $comment->loadById($_POST["id"]);
+        $comment->delete();
     }
 
 

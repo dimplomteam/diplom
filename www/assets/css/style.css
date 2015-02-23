@@ -5,7 +5,7 @@ body {
 	width:100%;
 	color:#959595;
 	font:normal 12px/1.8em Arial, Helvetica, sans-serif;
-	background:#e6e6e6 url(/assets/img/main_bottom_bg.gif) repeat-x bottom;
+	background:#e6e6e6  repeat-x bottom; /*url(/assets/img/main_bottom_bg.gif)*/
 }
 html {
 	padding:0;

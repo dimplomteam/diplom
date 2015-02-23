@@ -57,7 +57,7 @@
     margin-bottom: 20px;
 }
 
-#post_create_form input[type="submit"]{
+#post_create_form input[type="submit"], #post_create_form select{
     width: 100%;
 }
 
@@ -91,4 +91,24 @@
 #send_message_form textarea{
     width: 99%;
     height:100px;
+}
+
+.article{
+    position: relative;
+}
+.post_delete_btn{
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top:20px;
+}
+
+.comment{
+    position: relative;
+}
+.comment_delete_btn{
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top:20px;
 }

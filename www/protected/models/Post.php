@@ -8,7 +8,10 @@
 
 class Post extends baseModel{
 
-    public $_categoriesList=array("non-sorted" => "n_sorted", "cat1" => "category1");
+    public static $_categoriesList=array(
+        "non-sorted" => "n_sorted",
+        "cat1" => "category1",
+    );
 
     public function foreignFields(){
 //        var_dump($this->id);exit;
@@ -28,7 +31,7 @@ class Post extends baseModel{
     public function __get($key){
         $res=parent::__get($key);
         if($key=="category"){
-            return $this->_categoriesList[$res];
+            return self::$_categoriesList[$res];
         }
         return $res;
     }

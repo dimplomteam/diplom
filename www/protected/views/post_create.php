@@ -10,6 +10,12 @@
 <form action="/ajax/post_create" method="post" id="post_create_form">
     <input type="text" name="title" required="required"><br>
     <textarea id="post_create" name="content"></textarea><br>
+    <select name="category">
+
+        <? foreach (Post::$_categoriesList as $title => $value) { ?>
+        <option value="<?=$value?>"><?=$title?></option>
+        <?}?>
+    </select><br><br>
     <input type="submit">
 </form>
 <script>
