@@ -112,3 +112,6 @@
     right: 20px;
     top:20px;
 }
+.article img{
+    max-width: 630px;
+}

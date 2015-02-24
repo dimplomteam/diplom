@@ -72,6 +72,7 @@
               <? if(App::user()->isLogined()){?>
                 <li><a href="/profile" style="border-radius: 5px;">Профиль</a></li>
                 <li><a href="/post/create" style="border-radius: 5px;">Написать пост</a></li>
+                <li><a href="/ajax/logout" style="border-radius: 5px;">Выход</a></li>
               <?}else{?>
                 <li><a href="/login" style="border-radius: 5px;">Войти</a></li>
               <?}?>
@@ -109,8 +110,7 @@
     </div>
     <div class="footer">
       <div class="footer_resize">
-        <p class="lf">Copyright &copy; <a href="#">Domain Name</a>. All Rights Reserved</p>
-        <p class="rf">Get More <a target="_blank" href="http://www.free-css.com/">Free CSS Templates</a> by <a target="_blank" href="http://www.rocketwebsitetemplates.com/">RocketWebsiteTemplates</a></p>
+
         <div class="clr"></div>
       </div>
     </div>
