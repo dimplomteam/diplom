@@ -16,7 +16,7 @@
     <a href="/post/view/<?=$post->id?>"><h2><span><?=$post->title?></span></h2></a>
     <div class="clr"></div>
     <p class="post-data"><span class="date"><?=$post->created_time?></span> &nbsp;
-        |&nbsp; Запостил  <a href="/profile/view/<?=$post->user->login?>"><?=$post->user->login?></a>
+        |&nbsp; Запостил  <a href="/profile/view/<?=$post->user->login?>"><?=($post->user->username) ? $post->user->username : $post->user->login?></a>
     <div><?=viewHelper::BB($post->content)?></div>
     <p class="spec"><a href="/post/view/<?=$post->id?>#comments" class="com fr">подробнее</a> <a href="/post/view/<?=$post->id?>" style="visibility: hidden" class="rm fl">Read more</a></p>
     <div class="clr"></div>

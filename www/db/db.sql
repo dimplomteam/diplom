@@ -69,3 +69,6 @@ CREATE TABLE IF NOT EXISTS `message` (
 
 ALTER TABLE  `post` ADD  `category` VARCHAR( 255 ) NULL AFTER  `rank` ;
 
+ALTER TABLE  `user` CHANGE  `phone`  `username` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ;
+
+

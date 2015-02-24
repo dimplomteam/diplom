@@ -115,3 +115,17 @@
 .article img{
     max-width: 630px;
 }
+
+.profile_large_username{
+    font-size: 28px;
+    display: block;
+    position: absolute;
+    top: -65px;
+    left: -65px;
+    text-shadow: -1px 0px #333333, 0px -1px #333333, 1px 0px #333333, 0px 1px #333333, -1px -1px #333333, 1px 1px #333333, -1px 1px #333333, 1px -1px #333333, 1px 0px 4px #333333, 0px 0px 2px #333333, 0px 0px 3px #333333, 0px 0px 2px #333333, 0px 0px 3px #333333, 0px 0px 4px #333333, 0px 0px 4px #333333, 0px 0px 4px #333333, 0px 0px 4px #333333, 0px 0px 4px #333333;
+    color: #dddddd;
+}
+
+.mainbar{
+    position: relative;
+}

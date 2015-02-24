@@ -30,6 +30,7 @@ class ajaxController extends baseController{
         $user->login=$_POST["login"];
         $user->pass=$_POST["pass"];
         $user->email=$_POST["email"];
+        $user->username=$_POST["username"];
 
         $user_try = new User();
         $user_try->loadBySql("select * from `user`

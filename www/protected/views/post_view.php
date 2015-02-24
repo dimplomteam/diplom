@@ -18,7 +18,7 @@
     <h2><span><?=$this->post->title?></span></h2>
     <div class="clr"></div>
     <p class="post-data"><span class="date"><?=$this->post->created_time?></span> &nbsp;
-        |&nbsp; Запостил  <a href="/profile/view/<?=$this->post->user->login?>"><?=$this->post->user->login?></a></p>
+        |&nbsp; Запостил  <a href="/profile/view/<?=$this->post->user->login?>"><?=($this->post->user->username) ? $this->post->user->username : $this->post->user->login?></a></p>
         <div class="content"><?=viewHelper::BB($this->post->content)?></div>
 
     <div class="clr"></div>
@@ -31,14 +31,14 @@
         <div class="comment_delete_btn" onclick="comment_delete(this,<?=$comment->id?>)">Удалить</div>
     <?}?>
     <a href="/profile/view/<?=$comment->user->login?>"><img src="<?=$comment->user->image_src?>" width="40" height="40" alt="" class="userpic" /></a>
-    <p><a href="/profile/view/<?=$comment->user->login?>"><?=$comment->user->login?></a> Says:<br />
+    <p><a href="/profile/view/<?=$comment->user->login?>"><?=($comment->user->username) ? $comment->user->username : $comment->user->login?></a> Написал:<br />
         <?=$comment->created_time?></p>
     <p><?=$comment->content?></p>
 </div>
 
 <?php } ?>
 
-
+<? if(App::user()->isLogined()){?>
 <div class="article">
     <h2>Прокомментируйте</h2>
     <div class="clr"></div>
@@ -55,6 +55,7 @@
         </ol>
     </form>
 </div>
+<?}?>
 
 
 

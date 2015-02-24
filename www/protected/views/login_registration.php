@@ -8,9 +8,10 @@
 ?>
 
 <form action="/ajax/registration" method="POST">
-    Login: <input type="text" name="login"><br>
-    Pass: <input type="text" name="pass"><br>
-    E-mail: <input type="text" name="email"><br>
+    Login: <input type="text" name="login" required><br>
+    Pass: <input type="text" name="pass" required><br>
+    E-mail: <input type="text" name="email" required><br>
+    Username: <input type="text" name="username" required><br>
     <input type="submit"><br>
     <span><?=$this->registration_error?></span>
 </form>

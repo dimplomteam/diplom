@@ -48,7 +48,7 @@ class baseModel {
     }
 
     public function __get($key){
-        if(!$this->isLoaded()) return false;
+        //if(!$this->isLoaded()) return false;
 
         if(array_key_exists($key,$this->foreignFields())){
             return $this->getForeignLoadedModel($key);

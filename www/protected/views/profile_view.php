@@ -11,6 +11,10 @@
     <img src="<?=$this->user->image_src?>" alt="avatar" />
 </div>
 
+<div class="profile_large_username">
+<?=$this->user->username?>
+</div>
+
 
 <div class="menu1">
     <br id="tab2"/><br id="tab3"/><br id="tab4"/>
@@ -22,6 +26,7 @@
         </h3>
         <p>E-mail: <?=$this->user->email?></p>
         <p>Логин: <?=$this->user->login?></p>
+        <p>username: <?=$this->user->username?></p>
         <p>Дата регистрации: <?=$this->user->created_time?></p>
 
         <? if($this->user->itsMe()){?>

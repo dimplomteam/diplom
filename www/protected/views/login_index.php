@@ -7,8 +7,8 @@
  */
 ?>
 <form action="/ajax/login" method="POST">
-    Login: <input type="text" name="login"><br>
-    Pass: <input type="text" name="pass"><br>
+    Login: <input type="text" name="login" required><br>
+    Pass: <input type="text" name="pass" required><br>
     <input type="submit"><br>
     <span><?=$this->login_error?></span>
 </form>
