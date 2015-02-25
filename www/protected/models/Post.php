@@ -9,8 +9,13 @@
 class Post extends baseModel{
 
     public static $_categoriesList=array(
-        "non-sorted" => "n_sorted",
-        "cat1" => "category1",
+        "Без категории" => "n_sorted",
+        "Природные" => "category1",
+        "Культурные и исторические" => "category2",
+        "Религиозные" => "category3",
+        "Палеонтологические" => "category4",
+        "Аномальные зоны" => "category5",
+        "Отчеты о поездках" => "category5"
     );
 
     public function foreignFields(){
